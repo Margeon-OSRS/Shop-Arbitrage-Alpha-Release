@@ -15,7 +15,7 @@ def runeLiteVersion = '1.12.10' // This version updates occasionally
 dependencies {
 	compileOnly group: 'net.runelite', name: 'client', version: runeLiteVersion
 
-	// Lombok helps reduce boilerplate code
+
 	compileOnly 'org.projectlombok:lombok:1.18.34'
 	annotationProcessor 'org.projectlombok:lombok:1.18.34'
 
@@ -32,12 +32,11 @@ tasks.withType(JavaCompile) {
 	options.release.set(11) // RuneLite requires Java 11
 }
 
-// THIS IS THE MISSING TASK
 tasks.register('runelite', JavaExec) {
 	group = 'documentation'
 	description = 'Runs the RuneLite client with this plugin loaded'
 	classpath = sourceSets.test.runtimeClasspath
-	mainClass = 'com.yourname.shoparbitrage.DevLauncher'
+	mainClass = 'com.margeon.shoparbitrage.DevLauncher'
 	args = ['--developer-mode', '--profile', 'dev-test']
 	jvmArgs = [
 			'-ea',
