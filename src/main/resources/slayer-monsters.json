@@ -1,0 +1,280 @@
+{
+  "monsters": [
+    {
+      "name": "Abyssal Demon",
+      "combatLevel": 124,
+      "slayerLevel": 85,
+      "killsPerHour": 150,
+      "isSlayerTask": true,
+      "drops": [
+        { "itemId": 4151, "itemName": "Abyssal whip", "minQuantity": 1, "maxQuantity": 1, "dropRate": 0.00195, "isAlchable": false, "alchValue": 72000 },
+        { "itemId": 11212, "itemName": "Dragon arrowtips", "minQuantity": 50, "maxQuantity": 50, "dropRate": 0.02, "isAlchable": false, "alchValue": 200 }
+      ]
+    },
+    {
+      "name": "Gargoyle",
+      "combatLevel": 111,
+      "slayerLevel": 75,
+      "killsPerHour": 180,
+      "isSlayerTask": true,
+      "drops": [
+        { "itemId": 4153, "itemName": "Granite maul", "minQuantity": 1, "maxQuantity": 1, "dropRate": 0.0039, "isAlchable": false, "alchValue": 30000 },
+        { "itemId": 1185, "itemName": "Rune med helm", "minQuantity": 1, "maxQuantity": 1, "dropRate": 0.0238, "isAlchable": true, "alchValue": 11520 }
+      ]
+    },
+    {
+      "name": "Nechryael",
+      "combatLevel": 115,
+      "slayerLevel": 80,
+      "killsPerHour": 120,
+      "isSlayerTask": true,
+      "drops": [
+        { "itemId": 1185, "itemName": "Rune med helm", "minQuantity": 1, "maxQuantity": 1, "dropRate": 0.0156, "isAlchable": true, "alchValue": 11520 },
+        { "itemId": 1319, "itemName": "Rune 2h sword", "minQuantity": 1, "maxQuantity": 1, "dropRate": 0.0078, "isAlchable": true, "alchValue": 38400 }
+      ]
+    },
+    {
+      "name": "Dust Devil",
+      "combatLevel": 93,
+      "slayerLevel": 65,
+      "killsPerHour": 200,
+      "isSlayerTask": true,
+      "drops": [
+        { "itemId": 4212, "itemName": "Dragon chainbody", "minQuantity": 1, "maxQuantity": 1, "dropRate": 0.00003, "isAlchable": false, "alchValue": 100000 },
+        { "itemId": 207, "itemName": "Grimy ranarr weed", "minQuantity": 1, "maxQuantity": 1, "dropRate": 0.0156, "isAlchable": false, "alchValue": 0 }
+      ]
+    },
+    {
+      "name": "Kurask",
+      "combatLevel": 106,
+      "slayerLevel": 70,
+      "killsPerHour": 100,
+      "isSlayerTask": true,
+      "drops": [
+        { "itemId": 4158, "itemName": "Leaf-bladed sword", "minQuantity": 1, "maxQuantity": 1, "dropRate": 0.0026, "isAlchable": true, "alchValue": 24600 },
+        { "itemId": 207, "itemName": "Grimy ranarr weed", "minQuantity": 1, "maxQuantity": 2, "dropRate": 0.02, "isAlchable": false, "alchValue": 0 }
+      ]
+    },
+    {
+      "name": "Skeletal Wyvern",
+      "combatLevel": 140,
+      "slayerLevel": 72,
+      "killsPerHour": 40,
+      "isSlayerTask": true,
+      "drops": [
+        { "itemId": 11335, "itemName": "Draconic visage", "minQuantity": 1, "maxQuantity": 1, "dropRate": 0.0001, "isAlchable": false, "alchValue": 0 },
+        { "itemId": 6812, "itemName": "Wyvern bones", "minQuantity": 1, "maxQuantity": 1, "dropRate": 1.0, "isAlchable": false, "alchValue": 0 }
+      ]
+    },
+    {
+      "name": "Bloodveld",
+      "combatLevel": 76,
+      "slayerLevel": 50,
+      "killsPerHour": 170,
+      "isSlayerTask": true,
+      "drops": [
+        { "itemId": 565, "itemName": "Blood rune", "minQuantity": 10, "maxQuantity": 30, "dropRate": 0.066, "isAlchable": false, "alchValue": 0 },
+        { "itemId": 1185, "itemName": "Rune med helm", "minQuantity": 1, "maxQuantity": 1, "dropRate": 0.0078, "isAlchable": true, "alchValue": 11520 }
+      ]
+    },
+    {
+      "name": "Ankou",
+      "combatLevel": 98,
+      "slayerLevel": 1,
+      "killsPerHour": 90,
+      "isSlayerTask": false,
+      "drops": [
+        { "itemId": 560, "itemName": "Death rune", "minQuantity": 10, "maxQuantity": 20, "dropRate": 0.1, "isAlchable": false, "alchValue": 0 },
+        { "itemId": 565, "itemName": "Blood rune", "minQuantity": 10, "maxQuantity": 15, "dropRate": 0.0625, "isAlchable": false, "alchValue": 0 }
+      ]
+    },
+    {
+      "name": "Dark Beast",
+      "combatLevel": 182,
+      "slayerLevel": 90,
+      "killsPerHour": 130,
+      "isSlayerTask": true,
+      "drops": [
+        { "itemId": 11235, "itemName": "Dark bow", "minQuantity": 1, "maxQuantity": 1, "dropRate": 0.00195, "isAlchable": false, "alchValue": 60000 },
+        { "itemId": 1113, "itemName": "Rune chainbody", "minQuantity": 1, "maxQuantity": 1, "dropRate": 0.0078, "isAlchable": true, "alchValue": 30000 }
+      ]
+    },
+    {
+      "name": "Cave Horror",
+      "combatLevel": 80,
+      "slayerLevel": 58,
+      "killsPerHour": 160,
+      "isSlayerTask": true,
+      "drops": [
+        { "itemId": 8921, "itemName": "Black mask (10)", "minQuantity": 1, "maxQuantity": 1, "dropRate": 0.00195, "isAlchable": false, "alchValue": 0 },
+        { "itemId": 2722, "itemName": "Clue scroll (hard)", "minQuantity": 1, "maxQuantity": 1, "dropRate": 0.0078, "isAlchable": false, "alchValue": 0 }
+      ]
+    },
+    {
+      "name": "Aberrant Spectre",
+      "combatLevel": 96,
+      "slayerLevel": 60,
+      "killsPerHour": 180,
+      "isSlayerTask": true,
+      "drops": [
+        { "itemId": 207, "itemName": "Grimy ranarr weed", "minQuantity": 1, "maxQuantity": 3, "dropRate": 0.0156, "isAlchable": false, "alchValue": 0 },
+        { "itemId": 1163, "itemName": "Rune full helm", "minQuantity": 1, "maxQuantity": 1, "dropRate": 0.03125, "isAlchable": true, "alchValue": 21120 }
+      ]
+    },
+    {
+      "name": "Spiritual Mage",
+      "combatLevel": 121,
+      "slayerLevel": 83,
+      "killsPerHour": 150,
+      "isSlayerTask": true,
+      "drops": [
+        { "itemId": 11840, "itemName": "Dragon boots", "minQuantity": 1, "maxQuantity": 1, "dropRate": 0.0078, "isAlchable": false, "alchValue": 6000 }
+      ]
+    },
+    {
+      "name": "Hellhound",
+      "combatLevel": 122,
+      "slayerLevel": 1,
+      "killsPerHour": 160,
+      "isSlayerTask": true,
+      "drops": [
+        { "itemId": 13233, "itemName": "Smouldering stone", "minQuantity": 1, "maxQuantity": 1, "dropRate": 0.00003, "isAlchable": false, "alchValue": 0 },
+        { "itemId": 2722, "itemName": "Clue scroll (hard)", "minQuantity": 1, "maxQuantity": 1, "dropRate": 0.0156, "isAlchable": false, "alchValue": 0 }
+      ]
+    },
+    {
+      "name": "Kraken",
+      "combatLevel": 291,
+      "slayerLevel": 87,
+      "killsPerHour": 80,
+      "isSlayerTask": true,
+      "drops": [
+        { "itemId": 12002, "itemName": "Kraken tentacle", "minQuantity": 1, "maxQuantity": 1, "dropRate": 0.0025, "isAlchable": false, "alchValue": 0 },
+        { "itemId": 11907, "itemName": "Trident of the seas (full)", "minQuantity": 1, "maxQuantity": 1, "dropRate": 0.00195, "isAlchable": false, "alchValue": 0 }
+      ]
+    },
+    {
+      "name": "Cerberus",
+      "combatLevel": 318,
+      "slayerLevel": 91,
+      "killsPerHour": 50,
+      "isSlayerTask": true,
+      "drops": [
+        { "itemId": 13239, "itemName": "Primordial crystal", "minQuantity": 1, "maxQuantity": 1, "dropRate": 0.00195, "isAlchable": false, "alchValue": 0 },
+        { "itemId": 13237, "itemName": "Pegasian crystal", "minQuantity": 1, "maxQuantity": 1, "dropRate": 0.00195, "isAlchable": false, "alchValue": 0 },
+        { "itemId": 13235, "itemName": "Eternal crystal", "minQuantity": 1, "maxQuantity": 1, "dropRate": 0.00195, "isAlchable": false, "alchValue": 0 }
+      ]
+    },
+    {
+      "name": "Thermonuclear Smoke Devil",
+      "combatLevel": 301,
+      "slayerLevel": 93,
+      "killsPerHour": 90,
+      "isSlayerTask": true,
+      "drops": [
+        { "itemId": 12002, "itemName": "Occult necklace", "minQuantity": 1, "maxQuantity": 1, "dropRate": 0.0028, "isAlchable": false, "alchValue": 0 },
+        { "itemId": 11998, "itemName": "Smoke battlestaff", "minQuantity": 1, "maxQuantity": 1, "dropRate": 0.00195, "isAlchable": false, "alchValue": 0 }
+      ]
+    },
+    {
+      "name": "Alchemical Hydra",
+      "combatLevel": 426,
+      "slayerLevel": 95,
+      "killsPerHour": 30,
+      "isSlayerTask": true,
+      "drops": [
+        { "itemId": 22978, "itemName": "Hydra's claw", "minQuantity": 1, "maxQuantity": 1, "dropRate": 0.001, "isAlchable": false, "alchValue": 0 },
+        { "itemId": 22983, "itemName": "Hydra leather", "minQuantity": 1, "maxQuantity": 1, "dropRate": 0.00195, "isAlchable": false, "alchValue": 0 },
+        { "itemId": 22969, "itemName": "Hydra's eye", "minQuantity": 1, "maxQuantity": 1, "dropRate": 0.0055, "isAlchable": false, "alchValue": 0 }
+      ]
+    },
+    {
+      "name": "Basilisk Knight",
+      "combatLevel": 204,
+      "slayerLevel": 60,
+      "killsPerHour": 45,
+      "isSlayerTask": true,
+      "drops": [
+        { "itemId": 24268, "itemName": "Basilisk jaw", "minQuantity": 1, "maxQuantity": 1, "dropRate": 0.001, "isAlchable": false, "alchValue": 0 }
+      ]
+    },
+    {
+      "name": "Demonic Gorilla",
+      "combatLevel": 275,
+      "slayerLevel": 69,
+      "killsPerHour": 60,
+      "isSlayerTask": true,
+      "drops": [
+        { "itemId": 19529, "itemName": "Zenyte shard", "minQuantity": 1, "maxQuantity": 1, "dropRate": 0.00333, "isAlchable": false, "alchValue": 0 },
+        { "itemId": 1113, "itemName": "Rune chainbody", "minQuantity": 1, "maxQuantity": 1, "dropRate": 0.02, "isAlchable": true, "alchValue": 30000 }
+      ]
+    },
+    {
+      "name": "Lizardman Shaman",
+      "combatLevel": 150,
+      "slayerLevel": 1,
+      "killsPerHour": 120,
+      "isSlayerTask": true,
+      "drops": [
+        { "itemId": 13576, "itemName": "Dragon warhammer", "minQuantity": 1, "maxQuantity": 1, "dropRate": 0.0002, "isAlchable": false, "alchValue": 0 }
+      ]
+    },
+    {
+      "name": "Wyrm",
+      "combatLevel": 99,
+      "slayerLevel": 62,
+      "killsPerHour": 130,
+      "isSlayerTask": true,
+      "drops": [
+        { "itemId": 21028, "itemName": "Dragon harpoon", "minQuantity": 1, "maxQuantity": 1, "dropRate": 0.0005, "isAlchable": false, "alchValue": 0 },
+        { "itemId": 21009, "itemName": "Dragon sword", "minQuantity": 1, "maxQuantity": 1, "dropRate": 0.0005, "isAlchable": false, "alchValue": 0 }
+      ]
+    },
+    {
+      "name": "Drake",
+      "combatLevel": 192,
+      "slayerLevel": 84,
+      "killsPerHour": 80,
+      "isSlayerTask": true,
+      "drops": [
+        { "itemId": 22960, "itemName": "Drake's tooth", "minQuantity": 1, "maxQuantity": 1, "dropRate": 0.00195, "isAlchable": false, "alchValue": 0 },
+        { "itemId": 22962, "itemName": "Drake's claw", "minQuantity": 1, "maxQuantity": 1, "dropRate": 0.00195, "isAlchable": false, "alchValue": 0 }
+      ]
+    },
+    {
+      "name": "Grotesque Guardians",
+      "combatLevel": 306,
+      "slayerLevel": 75,
+      "killsPerHour": 30,
+      "isSlayerTask": true,
+      "drops": [
+        { "itemId": 21742, "itemName": "Granite hammer", "minQuantity": 1, "maxQuantity": 1, "dropRate": 0.004, "isAlchable": false, "alchValue": 0 },
+        { "itemId": 21730, "itemName": "Black tourmaline core", "minQuantity": 1, "maxQuantity": 1, "dropRate": 0.001, "isAlchable": false, "alchValue": 0 }
+      ]
+    },
+    {
+      "name": "Vorkath",
+      "combatLevel": 732,
+      "slayerLevel": 69,
+      "killsPerHour": 25,
+      "isSlayerTask": true,
+      "drops": [
+        { "itemId": 11286, "itemName": "Draconic visage", "minQuantity": 1, "maxQuantity": 1, "dropRate": 0.0002, "isAlchable": false, "alchValue": 0 },
+        { "itemId": 22006, "itemName": "Skeletal visage", "minQuantity": 1, "maxQuantity": 1, "dropRate": 0.0002, "isAlchable": false, "alchValue": 0 },
+        { "itemId": 22111, "itemName": "Dragonbone necklace", "minQuantity": 1, "maxQuantity": 1, "dropRate": 0.001, "isAlchable": false, "alchValue": 0 }
+      ]
+    },
+    {
+      "name": "Kalphite Queen",
+      "combatLevel": 333,
+      "slayerLevel": 1,
+      "killsPerHour": 20,
+      "isSlayerTask": true,
+      "drops": [
+        { "itemId": 3140, "itemName": "Dragon chainbody", "minQuantity": 1, "maxQuantity": 1, "dropRate": 0.0078, "isAlchable": false, "alchValue": 150000 },
+        { "itemId": 7981, "itemName": "Kalphite queen head", "minQuantity": 1, "maxQuantity": 1, "dropRate": 0.0078, "isAlchable": false, "alchValue": 0 },
+        { "itemId": 7158, "itemName": "Dragon 2h sword", "minQuantity": 1, "maxQuantity": 1, "dropRate": 0.0039, "isAlchable": false, "alchValue": 0 }
+      ]
+    }
+  ]
+}
