@@ -41,95 +41,85 @@ public class ShopCardPanel extends JPanel
         this.selectionCheckbox = new JCheckBox();
 
         setLayout(new BorderLayout());
-        setBorder(new EmptyBorder(5, 0, 5, 0));
+        setBorder(new EmptyBorder(3, 0, 3, 0));
         setBackground(ColorScheme.DARK_GRAY_COLOR);
 
         // --- HEADER ---
-        JPanel header = new JPanel(new BorderLayout());
+        JPanel header = new JPanel(new BorderLayout(5, 0));
         header.setBackground(ColorScheme.DARKER_GRAY_COLOR);
-        header.setBorder(new EmptyBorder(8, 8, 8, 8));
+        header.setBorder(new EmptyBorder(6, 6, 6, 6));
 
-        // LEFT: Checkbox for route planning
-        selectionCheckbox.setBackground(ColorScheme.DARKER_GRAY_COLOR);
-        selectionCheckbox.setToolTipText("Select for route planning");
-        selectionCheckbox.setBorder(new EmptyBorder(0, 0, 0, 5));
-
-        // WEST: Arrow + Checkbox
-        JPanel leftPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
+        // LEFT: Arrow + Checkbox
+        JPanel leftPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 2, 0));
         leftPanel.setBackground(ColorScheme.DARKER_GRAY_COLOR);
+        leftPanel.setPreferredSize(new Dimension(45, 30));
 
         arrowLabel = new JLabel("▶");
         arrowLabel.setForeground(Color.GRAY);
-        arrowLabel.setBorder(new EmptyBorder(0, 0, 0, 8));
+        arrowLabel.setFont(FontManager.getRunescapeSmallFont());
+
+        selectionCheckbox.setBackground(ColorScheme.DARKER_GRAY_COLOR);
+        selectionCheckbox.setToolTipText("Select for route planning");
 
         leftPanel.add(arrowLabel);
         leftPanel.add(selectionCheckbox);
 
-        // CENTER: Name + Location
-        JPanel centerPanel = new JPanel(new BorderLayout());
+        // CENTER: Name + Distance (stacked)
+        JPanel centerPanel = new JPanel();
+        centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
         centerPanel.setBackground(ColorScheme.DARKER_GRAY_COLOR);
-
-        JPanel titleInfo = new JPanel(new GridLayout(2, 1));
-        titleInfo.setBackground(ColorScheme.DARKER_GRAY_COLOR);
 
         JLabel nameLabel = new JLabel(shop.getName());
         nameLabel.setFont(FontManager.getRunescapeBoldFont());
         nameLabel.setForeground(Color.WHITE);
+        nameLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        nameLabel.setToolTipText(shop.getName()); // Full name on hover
 
-        String distStr = shop.getDistanceToBank() + " tiles to bank";
-        JLabel locationLabel = new JLabel(distStr);
-        locationLabel.setFont(FontManager.getRunescapeSmallFont());
-        locationLabel.setForeground(Color.GRAY);
+        JLabel distanceLabel = new JLabel(shop.getDistanceToBank() + " tiles to bank");
+        distanceLabel.setFont(FontManager.getRunescapeSmallFont());
+        distanceLabel.setForeground(Color.GRAY);
+        distanceLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
 
-        titleInfo.add(nameLabel);
-        titleInfo.add(locationLabel);
-        centerPanel.add(titleInfo, BorderLayout.CENTER);
+        centerPanel.add(nameLabel);
+        centerPanel.add(distanceLabel);
 
-        // Teleport Icon (with null safety)
+        // RIGHT: Profit + Teleport icon
+        JPanel rightPanel = new JPanel(new BorderLayout(3, 0));
+        rightPanel.setBackground(ColorScheme.DARKER_GRAY_COLOR);
+
+        // Profit label
+        JLabel profitLabel = new JLabel(QuantityFormatter.quantityToStackSize(totalProfit) + "/hr");
+        profitLabel.setFont(FontManager.getRunescapeBoldFont());
+        profitLabel.setForeground(getProfitColor(totalProfit));
+        profitLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+        profitLabel.setToolTipText("<html>Hourly: " + QuantityFormatter.formatNumber(totalProfit) + " gp<br>" +
+                "Per Trip: " + QuantityFormatter.formatNumber(tripProfit) + " gp</html>");
+
+        rightPanel.add(profitLabel, BorderLayout.CENTER);
+
+        // Teleport icon (if available)
         if (shop.getTeleportId() > 0)
         {
             JLabel teleportIcon = createTeleportIcon(shop.getTeleportId());
             if (teleportIcon != null)
             {
-                centerPanel.add(teleportIcon, BorderLayout.EAST);
+                teleportIcon.setBorder(new EmptyBorder(0, 5, 0, 0));
+                rightPanel.add(teleportIcon, BorderLayout.EAST);
             }
         }
 
-        // RIGHT: Profit + Shop Icon
-        JPanel rightInfo = new JPanel(new BorderLayout());
-        rightInfo.setBackground(ColorScheme.DARKER_GRAY_COLOR);
-
-        JLabel profitLabel = new JLabel(QuantityFormatter.quantityToStackSize(totalProfit) + "/hr");
-        profitLabel.setFont(FontManager.getRunescapeBoldFont());
-        profitLabel.setForeground(getProfitColor(totalProfit));
-        profitLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-        profitLabel.setBorder(new EmptyBorder(0, 5, 0, 0));
-
-        // Tooltip showing both hourly and trip profit
-        profitLabel.setToolTipText("<html>Hourly: " + QuantityFormatter.formatNumber(totalProfit) + " gp<br>" +
-                "Per Trip: " + QuantityFormatter.formatNumber(tripProfit) + " gp</html>");
-
-        // Shop Icon (with null safety)
-        JLabel shopIcon = createShopIcon();
-        if (shopIcon != null)
-        {
-            rightInfo.add(shopIcon, BorderLayout.CENTER);
-        }
-
-        rightInfo.add(profitLabel, BorderLayout.NORTH);
-
         header.add(leftPanel, BorderLayout.WEST);
         header.add(centerPanel, BorderLayout.CENTER);
-        header.add(rightInfo, BorderLayout.EAST);
+        header.add(rightPanel, BorderLayout.EAST);
 
-        // --- ITEMS LIST ---
+        // --- ITEMS LIST (expandable) ---
         container = new JPanel();
         container.setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));
         container.setBackground(ColorScheme.DARKER_GRAY_COLOR);
-        container.setBorder(new EmptyBorder(5, 0, 0, 0));
+        container.setBorder(new EmptyBorder(5, 0, 5, 0));
         container.setVisible(false);
 
-        // IMPROVED: Null safety checks
+        // Add item rows
         if (shop.getItems() != null && !shop.getItems().isEmpty())
         {
             for (ShopItemData item : shop.getItems())
@@ -150,27 +140,32 @@ public class ShopCardPanel extends JPanel
         }
 
         add(header, BorderLayout.NORTH);
-        add(container, BorderLayout.SOUTH);
+        add(container, BorderLayout.CENTER);
 
         // Mouse Listener for Expand/Collapse
+        header.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         header.addMouseListener(new MouseAdapter()
         {
             @Override
             public void mousePressed(MouseEvent e)
             {
-                toggleExpanded();
+                // Don't toggle if clicking the checkbox
+                if (e.getSource() != selectionCheckbox)
+                {
+                    toggleExpanded();
+                }
             }
 
             @Override
             public void mouseEntered(MouseEvent e)
             {
-                setHeaderBackground(ColorScheme.DARK_GRAY_HOVER_COLOR);
+                setHeaderBackground(header, ColorScheme.DARK_GRAY_HOVER_COLOR);
             }
 
             @Override
             public void mouseExited(MouseEvent e)
             {
-                setHeaderBackground(ColorScheme.DARKER_GRAY_COLOR);
+                setHeaderBackground(header, ColorScheme.DARKER_GRAY_COLOR);
             }
         });
     }
@@ -179,53 +174,41 @@ public class ShopCardPanel extends JPanel
     {
         isExpanded = !isExpanded;
         container.setVisible(isExpanded);
-        // FIXED: Proper arrow character encoding
         arrowLabel.setText(isExpanded ? "▼" : "▶");
         revalidate();
         repaint();
     }
 
-    private void setHeaderBackground(Color color)
+    private void setHeaderBackground(JPanel header, Color color)
     {
-        Component[] components = getComponents();
-        if (components.length > 0 && components[0] instanceof JPanel)
+        header.setBackground(color);
+        for (Component comp : header.getComponents())
         {
-            JPanel header = (JPanel) components[0];
-            header.setBackground(color);
-
-            // Update nested panels
-            for (Component comp : header.getComponents())
+            if (comp instanceof JPanel)
             {
-                if (comp instanceof JPanel)
+                comp.setBackground(color);
+                for (Component nested : ((JPanel) comp).getComponents())
                 {
-                    ((JPanel) comp).setBackground(color);
-
-                    // Update deeply nested panels
-                    for (Component nested : ((JPanel) comp).getComponents())
+                    if (nested instanceof JPanel)
                     {
-                        if (nested instanceof JPanel)
-                        {
-                            ((JPanel) nested).setBackground(color);
-                        }
+                        nested.setBackground(color);
                     }
                 }
             }
         }
     }
 
-    // IMPROVED: Extracted method with null safety
     private JLabel createTeleportIcon(int teleportId)
     {
         try
         {
             JLabel teleportIcon = new JLabel();
-            teleportIcon.setBorder(new EmptyBorder(0, 5, 0, 0));
             AsyncBufferedImage teleImg = itemManager.getImage(teleportId);
 
             if (teleImg != null)
             {
                 teleImg.addTo(teleportIcon);
-                teleportIcon.setToolTipText("Recommended Teleport");
+                teleportIcon.setToolTipText("Teleport item required");
                 return teleportIcon;
             }
         }
@@ -236,99 +219,12 @@ public class ShopCardPanel extends JPanel
         return null;
     }
 
-    // IMPROVED: Extracted method with null safety
-    private JLabel createShopIcon()
-    {
-        if (shop.getItems() == null || shop.getItems().isEmpty())
-        {
-            return null;
-        }
-
-        try
-        {
-            ShopItemData firstItem = shop.getItems().get(0);
-            if (firstItem != null)
-            {
-                JLabel shopIcon = new JLabel();
-                AsyncBufferedImage img = itemManager.getImage(firstItem.itemId);
-
-                if (img != null)
-                {
-                    img.addTo(shopIcon);
-                    return shopIcon;
-                }
-            }
-        }
-        catch (Exception e)
-        {
-            log.warn("Failed to load shop icon: {}", e.getMessage());
-        }
-        return null;
-    }
-
-    public long getProfit() { return totalProfit; }
-    public long getTripProfit() { return tripProfit; }
-    public String getName() { return shop.getName(); }
-    public int getDistance() { return shop.getDistanceToBank(); }
-
-    /**
-     * Check if this shop is selected for route planning
-     */
-    public boolean isSelected()
-    {
-        return selectionCheckbox.isSelected();
-    }
-
-    /**
-     * Set selection state
-     */
-    public void setSelected(boolean selected)
-    {
-        selectionCheckbox.setSelected(selected);
-    }
-
-    /**
-     * Get the shop data
-     */
-    public ShopData getShopData()
-    {
-        return shop;
-    }
-
-    /**
-     * Returns color based on profit tier thresholds from config
-     */
-    private Color getProfitColor(long profit)
-    {
-        if (profit >= config.highProfitThreshold())
-        {
-            return new Color(0, 200, 83); // Bright green for high profit
-        }
-        else if (profit >= config.mediumProfitThreshold())
-        {
-            return new Color(255, 144, 0); // Orange for medium profit
-        }
-        else if (profit > 0)
-        {
-            return new Color(255, 200, 0); // Yellow for low profit
-        }
-        else
-        {
-            return Color.RED; // Red for no profit
-        }
-    }
-
-    @Override
-    public Dimension getPreferredSize()
-    {
-        return new Dimension(PluginPanel.PANEL_WIDTH, super.getPreferredSize().height);
-    }
-
     private JPanel createItemRow(ShopItemData item, int gePrice)
     {
-        JPanel row = new JPanel(new BorderLayout());
+        JPanel row = new JPanel(new BorderLayout(5, 0));
         row.setBackground(ColorScheme.DARKER_GRAY_COLOR);
         row.setBorder(new EmptyBorder(2, 15, 2, 5));
+        row.setMaximumSize(new Dimension(PluginPanel.PANEL_WIDTH, 28));
 
         int margin = gePrice - item.shopPrice;
         int totalRowProfit = margin * item.quantity;
@@ -343,34 +239,97 @@ public class ShopCardPanel extends JPanel
 
         row.setToolTipText(tooltip);
 
-        JPanel statsPanel = new JPanel(new GridLayout(2, 1));
-        statsPanel.setBackground(ColorScheme.DARKER_GRAY_COLOR);
-        statsPanel.setPreferredSize(new Dimension(85, 32));
+        // Left: Item icon + name
+        JPanel leftPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 3, 0));
+        leftPanel.setBackground(ColorScheme.DARKER_GRAY_COLOR);
 
+        JLabel iconLabel = new JLabel();
+        try
+        {
+            AsyncBufferedImage img = itemManager.getImage(item.itemId);
+            if (img != null)
+            {
+                img.addTo(iconLabel);
+            }
+        }
+        catch (Exception e)
+        {
+            log.warn("Failed to load item icon: {}", e.getMessage());
+        }
+
+        JLabel nameLabel = new JLabel(item.quantity + "x " + item.itemName);
+        nameLabel.setForeground(Color.LIGHT_GRAY);
+        nameLabel.setFont(FontManager.getRunescapeSmallFont());
+
+        leftPanel.add(iconLabel);
+        leftPanel.add(nameLabel);
+
+        // Right: Profit
         JLabel profitVal = new JLabel((totalRowProfit > 0 ? "+" : "") +
                 QuantityFormatter.quantityToStackSize(totalRowProfit));
         profitVal.setHorizontalAlignment(SwingConstants.RIGHT);
         profitVal.setForeground(totalRowProfit > 0 ? Color.GREEN : Color.RED);
         profitVal.setFont(FontManager.getRunescapeSmallFont());
 
-        JLabel pricesLabel = new JLabel("B: " + QuantityFormatter.quantityToStackSize(item.shopPrice)
-                + " | S: " + QuantityFormatter.quantityToStackSize(gePrice));
-        pricesLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-        pricesLabel.setForeground(Color.GRAY);
-        pricesLabel.setFont(FontManager.getRunescapeSmallFont());
-
-        statsPanel.add(profitVal);
-        statsPanel.add(pricesLabel);
-        statsPanel.setToolTipText(tooltip);
-
-        JLabel nameLabel = new JLabel(item.quantity + " " + item.itemName);
-        nameLabel.setForeground(Color.LIGHT_GRAY);
-        nameLabel.setFont(FontManager.getRunescapeSmallFont());
-        nameLabel.setToolTipText(tooltip);
-
-        row.add(nameLabel, BorderLayout.CENTER);
-        row.add(statsPanel, BorderLayout.EAST);
+        row.add(leftPanel, BorderLayout.CENTER);
+        row.add(profitVal, BorderLayout.EAST);
 
         return row;
+    }
+
+    /**
+     * Returns color based on profit tier thresholds from config
+     */
+    private Color getProfitColor(long profit)
+    {
+        if (profit >= config.highProfitThreshold())
+        {
+            return new Color(0, 200, 83); // Bright green
+        }
+        else if (profit >= config.mediumProfitThreshold())
+        {
+            return new Color(255, 144, 0); // Orange
+        }
+        else if (profit > 0)
+        {
+            return new Color(255, 200, 0); // Yellow
+        }
+        else
+        {
+            return Color.RED;
+        }
+    }
+
+    // Getters
+    public long getProfit() { return totalProfit; }
+    public long getTripProfit() { return tripProfit; }
+    public String getName() { return shop.getName(); }
+    public int getDistance() { return shop.getDistanceToBank(); }
+
+    public boolean isSelected()
+    {
+        return selectionCheckbox.isSelected();
+    }
+
+    public void setSelected(boolean selected)
+    {
+        selectionCheckbox.setSelected(selected);
+    }
+
+    public ShopData getShopData()
+    {
+        return shop;
+    }
+
+    @Override
+    public Dimension getPreferredSize()
+    {
+        return new Dimension(PluginPanel.PANEL_WIDTH, super.getPreferredSize().height);
+    }
+
+    @Override
+    public Dimension getMaximumSize()
+    {
+        return new Dimension(PluginPanel.PANEL_WIDTH, super.getPreferredSize().height);
     }
 }
