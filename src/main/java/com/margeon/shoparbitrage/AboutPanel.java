@@ -10,7 +10,7 @@ import java.awt.*;
 public class AboutPanel extends JPanel
 {
     // Version constant for easy updates
-    private static final String VERSION = "Alpha Build v0.35";
+    private static final String VERSION = "Alpha Build v0.5";
     private static final String AUTHOR = "Margeon";
 
     public AboutPanel()
@@ -122,14 +122,14 @@ public class AboutPanel extends JPanel
         contentPanel.add(author, c);
         c.gridy++;
 
-        JLabel feedback = new JLabel("Press thumbs down for feedback!");
+        JLabel feedback = new JLabel("Contact Margeon on Discord!");
         feedback.setForeground(new Color(150, 150, 150));
         feedback.setHorizontalAlignment(SwingConstants.CENTER);
         feedback.setFont(FontManager.getRunescapeSmallFont());
         contentPanel.add(feedback, c);
         c.gridy++;
 
-        JLabel github = new JLabel("Report bugs or suggest features");
+        JLabel github = new JLabel("Report bugs or suggest features WIP");
         github.setForeground(new Color(120, 120, 120));
         github.setHorizontalAlignment(SwingConstants.CENTER);
         github.setFont(FontManager.getRunescapeSmallFont());
