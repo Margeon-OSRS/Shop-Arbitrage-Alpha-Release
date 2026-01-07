@@ -1,5 +1,6 @@
 package com.margeon.shoparbitrage;
 
+import net.runelite.client.callback.ClientThread;
 import net.runelite.client.game.ItemManager;
 import net.runelite.client.ui.ColorScheme;
 import net.runelite.client.ui.FontManager;
@@ -12,7 +13,9 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class HistoryPanel extends PluginPanel
 {
@@ -21,13 +24,18 @@ public class HistoryPanel extends PluginPanel
     private static final SimpleDateFormat TIME_FORMAT = new SimpleDateFormat("HH:mm:ss");
 
     private final ItemManager itemManager;
+    private final ClientThread clientThread;
     private final FlippingSessionManager sessionManager;
     private final JPanel listContainer = new JPanel();
 
-    public HistoryPanel(ItemManager itemManager, FlippingSessionManager sessionManager)
+    // Cache for item names (populated on client thread, read on EDT)
+    private final Map<Integer, String> itemNameCache = new HashMap<>();
+
+    public HistoryPanel(ItemManager itemManager, ClientThread clientThread, FlippingSessionManager sessionManager)
     {
         super(false);
         this.itemManager = itemManager;
+        this.clientThread = clientThread;
         this.sessionManager = sessionManager;
 
         setBackground(ColorScheme.DARK_GRAY_COLOR);
@@ -58,11 +66,48 @@ public class HistoryPanel extends PluginPanel
 
         add(scrollPane, BorderLayout.CENTER);
 
-        // Listen for updates
-        sessionManager.addListener(() -> SwingUtilities.invokeLater(this::rebuildList));
+        // Listen for updates - fetch names on client thread first
+        sessionManager.addListener(this::fetchNamesAndRebuild);
 
-        // Initial build
-        rebuildList();
+        // Initial build - fetch names on client thread first
+        fetchNamesAndRebuild();
+    }
+
+    /**
+     * Fetches item names on the client thread, then rebuilds the UI on the EDT
+     */
+    private void fetchNamesAndRebuild()
+    {
+        List<FlippingSessionManager.FlipTransaction> history = sessionManager.getHistory();
+
+        if (history.isEmpty())
+        {
+            SwingUtilities.invokeLater(this::rebuildList);
+            return;
+        }
+
+        // Fetch all item names on the client thread
+        clientThread.invoke(() -> {
+            for (FlippingSessionManager.FlipTransaction tx : history)
+            {
+                if (!itemNameCache.containsKey(tx.itemId))
+                {
+                    try
+                    {
+                        String name = itemManager.getItemComposition(tx.itemId).getName();
+                        itemNameCache.put(tx.itemId, name != null ? name : UNKNOWN_ITEM_NAME);
+                    }
+                    catch (Exception e)
+                    {
+                        log.warn("Failed to get item name for ID {}: {}", tx.itemId, e.getMessage());
+                        itemNameCache.put(tx.itemId, UNKNOWN_ITEM_NAME);
+                    }
+                }
+            }
+
+            // Now rebuild the UI on the EDT
+            SwingUtilities.invokeLater(this::rebuildList);
+        });
     }
 
     private void rebuildList()
@@ -161,18 +206,15 @@ public class HistoryPanel extends PluginPanel
         return row;
     }
 
-    // IMPROVED: Proper error handling instead of empty catch block
+    // FIXED: Use cached item names instead of calling itemManager directly
     private String getItemName(int itemId)
     {
-        try
+        String cachedName = itemNameCache.get(itemId);
+        if (cachedName != null)
         {
-            String name = itemManager.getItemComposition(itemId).getName();
-            return name != null ? name : UNKNOWN_ITEM_NAME;
+            return cachedName;
         }
-        catch (Exception e)
-        {
-            log.warn("Failed to get item name for ID {}: {}", itemId, e.getMessage());
-            return UNKNOWN_ITEM_NAME;
-        }
+        // Fallback - should not happen if fetchNamesAndRebuild was called properly
+        return UNKNOWN_ITEM_NAME;
     }
 }

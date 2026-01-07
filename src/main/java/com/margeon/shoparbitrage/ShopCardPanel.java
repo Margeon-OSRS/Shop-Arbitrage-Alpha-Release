@@ -19,15 +19,20 @@ public class ShopCardPanel extends JPanel
     private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(ShopCardPanel.class);
 
     private final ShopData shop;
-    private final long totalProfit; // Hourly
-    private final long tripProfit;  // Per Inventory
-    private final Map<Integer, Integer> itemPrices; // itemId -> gePrice
+    private final long totalProfit;
+    private final long tripProfit;
+    private final Map<Integer, Integer> itemPrices;
     private final ShopArbitrageConfig config;
     private boolean isExpanded = false;
     private final JLabel arrowLabel;
     private final JPanel container;
     private final ItemManager itemManager;
-    private final JCheckBox selectionCheckbox; // For route planning
+    private final JCheckBox selectionCheckbox;
+
+    // Colors for special indicators
+    private static final Color WILDERNESS_COLOR = new Color(200, 50, 50);
+    private static final Color MEMBERS_COLOR = new Color(200, 150, 50);
+    private static final Color QUEST_COLOR = new Color(100, 150, 200);
 
     public ShopCardPanel(ShopData shop, ItemManager itemManager, long totalProfit, long tripProfit,
                          Map<Integer, Integer> itemPrices, ShopArbitrageConfig config)
@@ -46,58 +51,109 @@ public class ShopCardPanel extends JPanel
 
         // --- HEADER ---
         JPanel header = new JPanel(new BorderLayout(5, 0));
-        header.setBackground(ColorScheme.DARKER_GRAY_COLOR);
+        header.setBackground(shop.isWilderness() ? new Color(50, 30, 30) : ColorScheme.DARKER_GRAY_COLOR);
         header.setBorder(new EmptyBorder(6, 6, 6, 6));
 
         // LEFT: Arrow + Checkbox
         JPanel leftPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 2, 0));
-        leftPanel.setBackground(ColorScheme.DARKER_GRAY_COLOR);
+        leftPanel.setBackground(header.getBackground());
         leftPanel.setPreferredSize(new Dimension(45, 30));
 
         arrowLabel = new JLabel("▶");
         arrowLabel.setForeground(Color.GRAY);
         arrowLabel.setFont(FontManager.getRunescapeSmallFont());
 
-        selectionCheckbox.setBackground(ColorScheme.DARKER_GRAY_COLOR);
+        selectionCheckbox.setBackground(header.getBackground());
         selectionCheckbox.setToolTipText("Select for route planning");
 
         leftPanel.add(arrowLabel);
         leftPanel.add(selectionCheckbox);
 
-        // CENTER: Name + Distance (stacked)
+        // CENTER: Name + Info (stacked)
         JPanel centerPanel = new JPanel();
         centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
-        centerPanel.setBackground(ColorScheme.DARKER_GRAY_COLOR);
+        centerPanel.setBackground(header.getBackground());
+
+        // Name with optional indicators
+        JPanel nameRow = new JPanel(new FlowLayout(FlowLayout.LEFT, 3, 0));
+        nameRow.setBackground(header.getBackground());
+        nameRow.setAlignmentX(Component.LEFT_ALIGNMENT);
 
         JLabel nameLabel = new JLabel(shop.getName());
         nameLabel.setFont(FontManager.getRunescapeBoldFont());
         nameLabel.setForeground(Color.WHITE);
-        nameLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
-        nameLabel.setToolTipText(shop.getName()); // Full name on hover
+        nameLabel.setToolTipText(shop.getName());
+        nameRow.add(nameLabel);
 
-        JLabel distanceLabel = new JLabel(shop.getDistanceToBank() + " tiles to bank");
+        // Wilderness indicator
+        if (shop.isWilderness())
+        {
+            JLabel wildyIcon = new JLabel("☠");
+            wildyIcon.setForeground(WILDERNESS_COLOR);
+            wildyIcon.setFont(FontManager.getRunescapeSmallFont());
+            wildyIcon.setToolTipText("WILDERNESS - PvP danger!");
+            nameRow.add(wildyIcon);
+        }
+
+        // Requirements indicator
+        if (shop.getRequirements() != null && !shop.getRequirements().isEmpty())
+        {
+            JLabel reqIcon = new JLabel("⚑");
+            reqIcon.setForeground(QUEST_COLOR);
+            reqIcon.setFont(FontManager.getRunescapeSmallFont());
+            reqIcon.setToolTipText("Requires: " + shop.getRequirements());
+            nameRow.add(reqIcon);
+        }
+
+        // Distance and category info
+        JPanel infoRow = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
+        infoRow.setBackground(header.getBackground());
+        infoRow.setAlignmentX(Component.LEFT_ALIGNMENT);
+
+        String distanceText = shop.getDistanceToBank() < 999 
+                ? shop.getDistanceToBank() + " tiles" 
+                : "No bank nearby";
+        
+        String categoryText = "";
+        if (shop.getCategory() != null && !shop.getCategory().isEmpty())
+        {
+            categoryText = " • " + formatCategory(shop.getCategory());
+        }
+
+        JLabel distanceLabel = new JLabel(distanceText + categoryText);
         distanceLabel.setFont(FontManager.getRunescapeSmallFont());
         distanceLabel.setForeground(Color.GRAY);
-        distanceLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        infoRow.add(distanceLabel);
 
-        centerPanel.add(nameLabel);
-        centerPanel.add(distanceLabel);
+        centerPanel.add(nameRow);
+        centerPanel.add(infoRow);
 
         // RIGHT: Profit + Teleport icon
         JPanel rightPanel = new JPanel(new BorderLayout(3, 0));
-        rightPanel.setBackground(ColorScheme.DARKER_GRAY_COLOR);
+        rightPanel.setBackground(header.getBackground());
 
         // Profit label
         JLabel profitLabel = new JLabel(QuantityFormatter.quantityToStackSize(totalProfit) + "/hr");
         profitLabel.setFont(FontManager.getRunescapeBoldFont());
         profitLabel.setForeground(getProfitColor(totalProfit));
         profitLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-        profitLabel.setToolTipText("<html>Hourly: " + QuantityFormatter.formatNumber(totalProfit) + " gp<br>" +
-                "Per Trip: " + QuantityFormatter.formatNumber(tripProfit) + " gp</html>");
+        
+        // Build tooltip
+        StringBuilder tooltipBuilder = new StringBuilder("<html>");
+        tooltipBuilder.append("<b>Hourly:</b> ").append(QuantityFormatter.formatNumber(totalProfit)).append(" gp<br>");
+        tooltipBuilder.append("<b>Per Trip:</b> ").append(QuantityFormatter.formatNumber(tripProfit)).append(" gp");
+        
+        if (shop.getNotes() != null && !shop.getNotes().isEmpty())
+        {
+            tooltipBuilder.append("<br><br><i>").append(shop.getNotes()).append("</i>");
+        }
+        tooltipBuilder.append("</html>");
+        
+        profitLabel.setToolTipText(tooltipBuilder.toString());
 
         rightPanel.add(profitLabel, BorderLayout.CENTER);
 
-        // Teleport icon (if available)
+        // Teleport icon
         if (shop.getTeleportId() > 0)
         {
             JLabel teleportIcon = createTeleportIcon(shop.getTeleportId());
@@ -118,6 +174,36 @@ public class ShopCardPanel extends JPanel
         container.setBackground(ColorScheme.DARKER_GRAY_COLOR);
         container.setBorder(new EmptyBorder(5, 0, 5, 0));
         container.setVisible(false);
+
+        // Add requirements row if present
+        if (shop.getRequirements() != null && !shop.getRequirements().isEmpty())
+        {
+            JPanel reqPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 5, 2));
+            reqPanel.setBackground(new Color(40, 50, 60));
+            reqPanel.setMaximumSize(new Dimension(PluginPanel.PANEL_WIDTH, 25));
+            
+            JLabel reqLabel = new JLabel("⚑ Requires: " + shop.getRequirements());
+            reqLabel.setForeground(QUEST_COLOR);
+            reqLabel.setFont(FontManager.getRunescapeSmallFont());
+            reqPanel.add(reqLabel);
+            
+            container.add(reqPanel);
+        }
+
+        // Add notes row if present
+        if (shop.getNotes() != null && !shop.getNotes().isEmpty())
+        {
+            JPanel notesPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 5, 2));
+            notesPanel.setBackground(new Color(50, 50, 40));
+            notesPanel.setMaximumSize(new Dimension(PluginPanel.PANEL_WIDTH, 25));
+            
+            JLabel notesLabel = new JLabel("ℹ " + shop.getNotes());
+            notesLabel.setForeground(new Color(200, 200, 150));
+            notesLabel.setFont(FontManager.getRunescapeSmallFont());
+            notesPanel.add(notesLabel);
+            
+            container.add(notesPanel);
+        }
 
         // Add item rows
         if (shop.getItems() != null && !shop.getItems().isEmpty())
@@ -149,7 +235,6 @@ public class ShopCardPanel extends JPanel
             @Override
             public void mousePressed(MouseEvent e)
             {
-                // Don't toggle if clicking the checkbox
                 if (e.getSource() != selectionCheckbox)
                 {
                     toggleExpanded();
@@ -159,15 +244,30 @@ public class ShopCardPanel extends JPanel
             @Override
             public void mouseEntered(MouseEvent e)
             {
-                setHeaderBackground(header, ColorScheme.DARK_GRAY_HOVER_COLOR);
+                setHeaderBackground(header, shop.isWilderness() 
+                        ? new Color(60, 40, 40) 
+                        : ColorScheme.DARK_GRAY_HOVER_COLOR);
             }
 
             @Override
             public void mouseExited(MouseEvent e)
             {
-                setHeaderBackground(header, ColorScheme.DARKER_GRAY_COLOR);
+                setHeaderBackground(header, shop.isWilderness() 
+                        ? new Color(50, 30, 30) 
+                        : ColorScheme.DARKER_GRAY_COLOR);
             }
         });
+    }
+
+    private String formatCategory(String category)
+    {
+        if (category == null) return "";
+        String formatted = category.replace("_SHOP", "").replace("_", " ");
+        if (formatted.length() > 0)
+        {
+            return formatted.substring(0, 1).toUpperCase() + formatted.substring(1).toLowerCase();
+        }
+        return formatted;
     }
 
     private void toggleExpanded()
@@ -208,7 +308,7 @@ public class ShopCardPanel extends JPanel
             if (teleImg != null)
             {
                 teleImg.addTo(teleportIcon);
-                teleportIcon.setToolTipText("Teleport item required");
+                teleportIcon.setToolTipText("Teleport item available");
                 return teleportIcon;
             }
         }
@@ -234,6 +334,7 @@ public class ShopCardPanel extends JPanel
                 + "Shop Buy: " + QuantityFormatter.formatNumber(item.shopPrice) + " gp<br>"
                 + "GE Sell: " + QuantityFormatter.formatNumber(gePrice) + " gp<br>"
                 + "Margin: " + (margin > 0 ? "+" : "") + margin + " gp<br>"
+                + "Stock: " + item.quantity + "<br>"
                 + "Total: " + QuantityFormatter.quantityToStackSize(totalRowProfit)
                 + "</html>";
 
@@ -277,9 +378,6 @@ public class ShopCardPanel extends JPanel
         return row;
     }
 
-    /**
-     * Returns color based on profit tier thresholds from config
-     */
     private Color getProfitColor(long profit)
     {
         if (profit >= config.highProfitThreshold())

@@ -1,204 +1,1035 @@
 [
   {
     "name": "Aubury's Rune Shop",
+    "category": "RUNE_SHOP",
     "location": { "x": 3253, "y": 3401, "plane": 0 },
     "nearestBank": { "x": 3253, "y": 3420, "plane": 0 },
     "teleportId": 8007,
+    "teleportLocation": { "x": 3213, "y": 3424, "plane": 0 },
     "items": [
-      { "itemName": "Air Rune", "itemId": 556, "shopPrice": 4, "quantity": 5000 },
-      { "itemName": "Water Rune", "itemId": 555, "shopPrice": 4, "quantity": 5000 },
-      { "itemName": "Earth Rune", "itemId": 557, "shopPrice": 4, "quantity": 5000 },
-      { "itemName": "Fire Rune", "itemId": 554, "shopPrice": 4, "quantity": 5000 },
-      { "itemName": "Mind Rune", "itemId": 558, "shopPrice": 3, "quantity": 5000 },
-      { "itemName": "Chaos Rune", "itemId": 562, "shopPrice": 90, "quantity": 250 },
-      { "itemName": "Death Rune", "itemId": 560, "shopPrice": 180, "quantity": 250 }
+      { "itemName": "Air rune", "itemId": 556, "shopPrice": 4, "quantity": 5000 },
+      { "itemName": "Water rune", "itemId": 555, "shopPrice": 4, "quantity": 5000 },
+      { "itemName": "Earth rune", "itemId": 557, "shopPrice": 4, "quantity": 5000 },
+      { "itemName": "Fire rune", "itemId": 554, "shopPrice": 4, "quantity": 5000 },
+      { "itemName": "Mind rune", "itemId": 558, "shopPrice": 3, "quantity": 5000 },
+      { "itemName": "Chaos rune", "itemId": 562, "shopPrice": 90, "quantity": 250 },
+      { "itemName": "Death rune", "itemId": 560, "shopPrice": 180, "quantity": 250 }
     ],
-    "teleportLocation": { "x": 3213, "y": 3424, "plane": 0 }
+    "isMembers": false,
+    "notes": "F2P accessible, good for ironmen"
   },
   {
-    "name": "Grand Tree Groceries (Heckel Funch)",
-    "location": { "x": 2466, "y": 3488, "plane": 1 },
-    "nearestBank": { "x": 2449, "y": 3428, "plane": 1 },
+    "name": "Wizard's Guild Store",
+    "category": "RUNE_SHOP",
+    "location": { "x": 2594, "y": 3088, "plane": 0 },
+    "nearestBank": { "x": 2612, "y": 3093, "plane": 0 },
+    "teleportId": 8012,
+    "teleportLocation": { "x": 2549, "y": 3114, "plane": 0 },
+    "items": [
+      { "itemName": "Death rune", "itemId": 560, "shopPrice": 180, "quantity": 250 },
+      { "itemName": "Blood rune", "itemId": 565, "shopPrice": 400, "quantity": 250 },
+      { "itemName": "Soul rune", "itemId": 566, "shopPrice": 300, "quantity": 250 },
+      { "itemName": "Nature rune", "itemId": 561, "shopPrice": 180, "quantity": 250 },
+      { "itemName": "Law rune", "itemId": 563, "shopPrice": 240, "quantity": 250 }
+    ],
+    "isMembers": true,
+    "requirements": "66 Magic",
+    "notes": "Requires 66 Magic to enter guild"
+  },
+  {
+    "name": "Lundail's Arena-side Rune Shop",
+    "category": "RUNE_SHOP",
+    "location": { "x": 3105, "y": 3958, "plane": 0 },
+    "nearestBank": { "x": 2538, "y": 3573, "plane": 0 },
     "teleportId": 1712,
+    "teleportLocation": { "x": 3105, "y": 3951, "plane": 0 },
+    "items": [
+      { "itemName": "Death rune", "itemId": 560, "shopPrice": 180, "quantity": 250 },
+      { "itemName": "Blood rune", "itemId": 565, "shopPrice": 400, "quantity": 250 },
+      { "itemName": "Nature rune", "itemId": 561, "shopPrice": 180, "quantity": 250 },
+      { "itemName": "Law rune", "itemId": 563, "shopPrice": 240, "quantity": 250 },
+      { "itemName": "Cosmic rune", "itemId": 564, "shopPrice": 50, "quantity": 250 }
+    ],
+    "isMembers": true,
+    "isWilderness": true,
+    "notes": "Wilderness! Use Ghorrock teleport or Mage Arena lever"
+  },
+  {
+    "name": "Betty's Magic Emporium",
+    "category": "RUNE_SHOP",
+    "location": { "x": 3014, "y": 3258, "plane": 0 },
+    "nearestBank": { "x": 3048, "y": 3236, "plane": 0 },
+    "teleportId": 11978,
+    "teleportLocation": { "x": 2966, "y": 3380, "plane": 0 },
+    "items": [
+      { "itemName": "Eye of newt", "itemId": 221, "shopPrice": 3, "quantity": 1000 },
+      { "itemName": "Chaos rune", "itemId": 562, "shopPrice": 90, "quantity": 250 },
+      { "itemName": "Death rune", "itemId": 560, "shopPrice": 180, "quantity": 250 },
+      { "itemName": "Fire rune", "itemId": 554, "shopPrice": 4, "quantity": 5000 },
+      { "itemName": "Water rune", "itemId": 555, "shopPrice": 4, "quantity": 5000 },
+      { "itemName": "Air rune", "itemId": 556, "shopPrice": 4, "quantity": 5000 },
+      { "itemName": "Earth rune", "itemId": 557, "shopPrice": 4, "quantity": 5000 }
+    ],
+    "isMembers": false,
+    "notes": "Port Sarim - Eye of newt very profitable"
+  },
+  {
+    "name": "Baba Yaga's Magic Shop",
+    "category": "RUNE_SHOP",
+    "location": { "x": 2450, "y": 4645, "plane": 0 },
+    "nearestBank": { "x": 2099, "y": 3920, "plane": 0 },
+    "teleportId": 0,
+    "teleportLocation": { "x": 2114, "y": 3915, "plane": 0 },
+    "items": [
+      { "itemName": "Astral rune", "itemId": 9075, "shopPrice": 50, "quantity": 250 },
+      { "itemName": "Soul rune", "itemId": 566, "shopPrice": 300, "quantity": 250 },
+      { "itemName": "Blood rune", "itemId": 565, "shopPrice": 400, "quantity": 250 },
+      { "itemName": "Battlestaff", "itemId": 1391, "shopPrice": 7000, "quantity": 5 }
+    ],
+    "isMembers": true,
+    "requirements": "Lunar Diplomacy",
+    "notes": "Lunar Isle - Use Lunar Home Teleport or Moonclan teleport"
+  },
+  {
+    "name": "Prifddinas Magic Shop (Iorwerth)",
+    "category": "RUNE_SHOP",
+    "location": { "x": 3220, "y": 6120, "plane": 0 },
+    "nearestBank": { "x": 3255, "y": 6108, "plane": 0 },
+    "teleportId": 0,
+    "teleportLocation": { "x": 3263, "y": 6079, "plane": 0 },
+    "items": [
+      { "itemName": "Death rune", "itemId": 560, "shopPrice": 180, "quantity": 500 },
+      { "itemName": "Blood rune", "itemId": 565, "shopPrice": 400, "quantity": 500 },
+      { "itemName": "Soul rune", "itemId": 566, "shopPrice": 300, "quantity": 500 },
+      { "itemName": "Cosmic rune", "itemId": 564, "shopPrice": 50, "quantity": 250 }
+    ],
+    "isMembers": true,
+    "requirements": "Song of the Elves",
+    "notes": "Best rune stock in game - requires SotE"
+  },
+  {
+    "name": "Ali's Discount Wares",
+    "category": "RUNE_SHOP",
+    "location": { "x": 3315, "y": 3210, "plane": 0 },
+    "nearestBank": { "x": 3269, "y": 3167, "plane": 0 },
+    "teleportId": 1712,
+    "teleportLocation": { "x": 3293, "y": 3163, "plane": 0 },
+    "items": [
+      { "itemName": "Fire rune", "itemId": 554, "shopPrice": 3, "quantity": 5000 },
+      { "itemName": "Air rune", "itemId": 556, "shopPrice": 3, "quantity": 5000 },
+      { "itemName": "Water rune", "itemId": 555, "shopPrice": 3, "quantity": 5000 },
+      { "itemName": "Earth rune", "itemId": 557, "shopPrice": 3, "quantity": 5000 }
+    ],
+    "isMembers": true,
+    "requirements": "The Feud",
+    "notes": "Al Kharid - Cheapest basic runes after The Feud"
+  },
+  {
+    "name": "TzHaar-Mej-Roh's Rune Shop",
+    "category": "RUNE_SHOP",
+    "location": { "x": 2460, "y": 5149, "plane": 0 },
+    "nearestBank": { "x": 2446, "y": 5178, "plane": 0 },
+    "teleportId": 0,
+    "teleportLocation": { "x": 2480, "y": 5175, "plane": 0 },
+    "items": [
+      { "itemName": "Death rune", "itemId": 560, "shopPrice": 180, "quantity": 250 },
+      { "itemName": "Blood rune", "itemId": 565, "shopPrice": 400, "quantity": 250 },
+      { "itemName": "Chaos rune", "itemId": 562, "shopPrice": 90, "quantity": 250 },
+      { "itemName": "Cosmic rune", "itemId": 564, "shopPrice": 50, "quantity": 250 },
+      { "itemName": "Nature rune", "itemId": 561, "shopPrice": 180, "quantity": 250 },
+      { "itemName": "Law rune", "itemId": 563, "shopPrice": 240, "quantity": 250 }
+    ],
+    "isMembers": true,
+    "notes": "TzHaar City - Fairy ring BLP or Fire cape teleport"
+  },
+
+  {
+    "name": "Charter Ship - Catherby",
+    "category": "CHARTER_SHIP",
+    "location": { "x": 2792, "y": 3414, "plane": 0 },
+    "nearestBank": { "x": 2809, "y": 3441, "plane": 0 },
+    "teleportId": 8010,
+    "teleportLocation": { "x": 2757, "y": 3477, "plane": 0 },
+    "items": [
+      { "itemName": "Bucket of sand", "itemId": 1783, "shopPrice": 25, "quantity": 10 },
+      { "itemName": "Soda ash", "itemId": 1781, "shopPrice": 25, "quantity": 10 },
+      { "itemName": "Seaweed", "itemId": 401, "shopPrice": 5, "quantity": 10 },
+      { "itemName": "Pineapple", "itemId": 2114, "shopPrice": 5, "quantity": 10 },
+      { "itemName": "Vial of water", "itemId": 227, "shopPrice": 10, "quantity": 50 }
+    ],
+    "isMembers": true,
+    "notes": "Charter ships restock per player - very profitable with hopping"
+  },
+  {
+    "name": "Charter Ship - Port Khazard",
+    "category": "CHARTER_SHIP",
+    "location": { "x": 2674, "y": 3141, "plane": 0 },
+    "nearestBank": { "x": 2664, "y": 3161, "plane": 0 },
+    "teleportId": 13132,
+    "teleportLocation": { "x": 2634, "y": 3165, "plane": 0 },
+    "items": [
+      { "itemName": "Bucket of sand", "itemId": 1783, "shopPrice": 25, "quantity": 10 },
+      { "itemName": "Soda ash", "itemId": 1781, "shopPrice": 25, "quantity": 10 },
+      { "itemName": "Seaweed", "itemId": 401, "shopPrice": 5, "quantity": 10 },
+      { "itemName": "Pineapple", "itemId": 2114, "shopPrice": 5, "quantity": 10 },
+      { "itemName": "Vial of water", "itemId": 227, "shopPrice": 10, "quantity": 50 }
+    ],
+    "isMembers": true,
+    "notes": "Skills necklace to Fishing Guild nearby"
+  },
+  {
+    "name": "Charter Ship - Brimhaven",
+    "category": "CHARTER_SHIP",
+    "location": { "x": 2760, "y": 3238, "plane": 0 },
+    "nearestBank": { "x": 2807, "y": 3193, "plane": 0 },
+    "teleportId": 0,
+    "teleportLocation": { "x": 2758, "y": 3242, "plane": 0 },
+    "items": [
+      { "itemName": "Bucket of sand", "itemId": 1783, "shopPrice": 25, "quantity": 10 },
+      { "itemName": "Soda ash", "itemId": 1781, "shopPrice": 25, "quantity": 10 },
+      { "itemName": "Seaweed", "itemId": 401, "shopPrice": 5, "quantity": 10 },
+      { "itemName": "Pineapple", "itemId": 2114, "shopPrice": 5, "quantity": 10 },
+      { "itemName": "Vial of water", "itemId": 227, "shopPrice": 10, "quantity": 50 }
+    ],
+    "isMembers": true,
+    "notes": "Brimhaven teleport tablet or charter from other port"
+  },
+  {
+    "name": "Charter Ship - Port Sarim",
+    "category": "CHARTER_SHIP",
+    "location": { "x": 3041, "y": 3189, "plane": 0 },
+    "nearestBank": { "x": 3047, "y": 3236, "plane": 0 },
+    "teleportId": 0,
+    "teleportLocation": { "x": 3051, "y": 3256, "plane": 0 },
+    "items": [
+      { "itemName": "Bucket of sand", "itemId": 1783, "shopPrice": 25, "quantity": 10 },
+      { "itemName": "Soda ash", "itemId": 1781, "shopPrice": 25, "quantity": 10 },
+      { "itemName": "Seaweed", "itemId": 401, "shopPrice": 5, "quantity": 10 },
+      { "itemName": "Pineapple", "itemId": 2114, "shopPrice": 5, "quantity": 10 },
+      { "itemName": "Vial of water", "itemId": 227, "shopPrice": 10, "quantity": 50 }
+    ],
+    "isMembers": true,
+    "notes": "Amulet of glory to Draynor, run south"
+  },
+  {
+    "name": "Charter Ship - Port Phasmatys",
+    "category": "CHARTER_SHIP",
+    "location": { "x": 3702, "y": 3503, "plane": 0 },
+    "nearestBank": { "x": 3688, "y": 3467, "plane": 0 },
+    "teleportId": 0,
+    "teleportLocation": { "x": 3688, "y": 3508, "plane": 0 },
+    "items": [
+      { "itemName": "Bucket of sand", "itemId": 1783, "shopPrice": 25, "quantity": 10 },
+      { "itemName": "Soda ash", "itemId": 1781, "shopPrice": 25, "quantity": 10 },
+      { "itemName": "Seaweed", "itemId": 401, "shopPrice": 5, "quantity": 10 },
+      { "itemName": "Pineapple", "itemId": 2114, "shopPrice": 5, "quantity": 10 },
+      { "itemName": "Vial of water", "itemId": 227, "shopPrice": 10, "quantity": 50 }
+    ],
+    "isMembers": true,
+    "requirements": "Ghosts Ahoy (for no ectokens)",
+    "notes": "Ectophial teleport - very fast access"
+  },
+  {
+    "name": "Charter Ship - Corsair Cove",
+    "category": "CHARTER_SHIP",
+    "location": { "x": 2589, "y": 2851, "plane": 0 },
+    "nearestBank": { "x": 2570, "y": 2864, "plane": 0 },
+    "teleportId": 0,
+    "teleportLocation": { "x": 2545, "y": 2871, "plane": 0 },
+    "items": [
+      { "itemName": "Bucket of sand", "itemId": 1783, "shopPrice": 25, "quantity": 10 },
+      { "itemName": "Soda ash", "itemId": 1781, "shopPrice": 25, "quantity": 10 },
+      { "itemName": "Seaweed", "itemId": 401, "shopPrice": 5, "quantity": 10 },
+      { "itemName": "Pineapple", "itemId": 2114, "shopPrice": 5, "quantity": 10 },
+      { "itemName": "Vial of water", "itemId": 227, "shopPrice": 10, "quantity": 50 }
+    ],
+    "isMembers": false,
+    "requirements": "The Corsair Curse",
+    "notes": "F2P charter! Spirit tree or Myths Guild teleport nearby"
+  },
+  {
+    "name": "Charter Ship - Mos Le'Harmless",
+    "category": "CHARTER_SHIP",
+    "location": { "x": 3671, "y": 2931, "plane": 0 },
+    "nearestBank": { "x": 3680, "y": 2982, "plane": 0 },
+    "teleportId": 0,
+    "teleportLocation": { "x": 3683, "y": 2954, "plane": 0 },
+    "items": [
+      { "itemName": "Bucket of sand", "itemId": 1783, "shopPrice": 25, "quantity": 10 },
+      { "itemName": "Soda ash", "itemId": 1781, "shopPrice": 25, "quantity": 10 },
+      { "itemName": "Seaweed", "itemId": 401, "shopPrice": 5, "quantity": 10 },
+      { "itemName": "Pineapple", "itemId": 2114, "shopPrice": 5, "quantity": 10 },
+      { "itemName": "Vial of water", "itemId": 227, "shopPrice": 10, "quantity": 50 }
+    ],
+    "isMembers": true,
+    "requirements": "Cabin Fever",
+    "notes": "Trouble Brewing minigame teleport or charter"
+  },
+  {
+    "name": "Charter Ship - Ship Yard",
+    "category": "CHARTER_SHIP",
+    "location": { "x": 3001, "y": 3032, "plane": 0 },
+    "nearestBank": { "x": 2807, "y": 3193, "plane": 0 },
+    "teleportId": 0,
+    "teleportLocation": { "x": 2954, "y": 3052, "plane": 0 },
+    "items": [
+      { "itemName": "Bucket of sand", "itemId": 1783, "shopPrice": 25, "quantity": 10 },
+      { "itemName": "Soda ash", "itemId": 1781, "shopPrice": 25, "quantity": 10 },
+      { "itemName": "Seaweed", "itemId": 401, "shopPrice": 5, "quantity": 10 },
+      { "itemName": "Pineapple", "itemId": 2114, "shopPrice": 5, "quantity": 10 },
+      { "itemName": "Vial of water", "itemId": 227, "shopPrice": 10, "quantity": 50 }
+    ],
+    "isMembers": true,
+    "requirements": "The Grand Tree",
+    "notes": "Fairy ring CKR or Gnome Glider to Karamja"
+  },
+
+  {
+    "name": "Zaff's Superior Staffs",
+    "category": "STAFF_SHOP",
+    "location": { "x": 3202, "y": 3434, "plane": 0 },
+    "nearestBank": { "x": 3253, "y": 3420, "plane": 0 },
+    "teleportId": 8007,
+    "teleportLocation": { "x": 3213, "y": 3424, "plane": 0 },
+    "items": [
+      { "itemName": "Battlestaff", "itemId": 1391, "shopPrice": 7000, "quantity": 5 },
+      { "itemName": "Staff of air", "itemId": 1381, "shopPrice": 1500, "quantity": 5 },
+      { "itemName": "Staff of water", "itemId": 1383, "shopPrice": 1500, "quantity": 5 },
+      { "itemName": "Staff of earth", "itemId": 1385, "shopPrice": 1500, "quantity": 5 },
+      { "itemName": "Staff of fire", "itemId": 1387, "shopPrice": 1500, "quantity": 5 }
+    ],
+    "isMembers": true,
+    "notes": "Daily battlestaff deal scales with Varrock diary"
+  },
+
+  {
+    "name": "Grand Tree Groceries",
+    "category": "FOOD_SHOP",
+    "location": { "x": 2466, "y": 3488, "plane": 1 },
+    "nearestBank": { "x": 2449, "y": 3482, "plane": 1 },
+    "teleportId": 0,
+    "teleportLocation": { "x": 2461, "y": 3444, "plane": 0 },
     "items": [
       { "itemName": "Pineapple", "itemId": 2114, "shopPrice": 2, "quantity": 30 },
       { "itemName": "Orange", "itemId": 2108, "shopPrice": 2, "quantity": 30 },
       { "itemName": "Lemon", "itemId": 2102, "shopPrice": 2, "quantity": 30 },
       { "itemName": "Lime", "itemId": 2120, "shopPrice": 2, "quantity": 30 },
-      { "itemName": "Vodka", "itemId": 2116, "shopPrice": 5, "quantity": 15 },
-      { "itemName": "Gin", "itemId": 2118, "shopPrice": 5, "quantity": 15 }
+      { "itemName": "Vodka", "itemId": 2015, "shopPrice": 5, "quantity": 10 },
+      { "itemName": "Gin", "itemId": 2019, "shopPrice": 5, "quantity": 10 }
     ],
-    "teleportLocation": { "x": 2465, "y": 3495, "plane": 0 }
-  },
-  {
-    "name": "Trader Crewmember (Port Khazard)",
-    "location": { "x": 2674, "y": 3169, "plane": 0 },
-    "nearestBank": { "x": 2664, "y": 3161, "plane": 0 },
-    "teleportId": 13132,
-    "items": [
-      { "itemName": "Bucket of Sand", "itemId": 1783, "shopPrice": 2, "quantity": 100 },
-      { "itemName": "Soda Ash", "itemId": 1781, "shopPrice": 2, "quantity": 100 },
-      { "itemName": "Seaweed", "itemId": 401, "shopPrice": 2, "quantity": 100 },
-      { "itemName": "Pineapple", "itemId": 2114, "shopPrice": 2, "quantity": 30 }
-    ],
-    "teleportLocation": { "x": 2636, "y": 3167, "plane": 0 }
-  },
-  {
-    "name": "Sawmill Operator (Varrock)",
-    "location": { "x": 3302, "y": 3491, "plane": 0 },
-    "nearestBank": { "x": 3253, "y": 3420, "plane": 0 },
-    "teleportId": 8007,
-    "items": [
-      { "itemName": "Bolt of Cloth", "itemId": 8790, "shopPrice": 650, "quantity": 30 }
-    ],
-    "teleportLocation": { "x": 3213, "y": 3424, "plane": 0 }
-  },
-  {
-    "name": "Wizard's Guild (Yanille)",
-    "location": { "x": 2602, "y": 3086, "plane": 0 },
-    "nearestBank": { "x": 2612, "y": 3093, "plane": 0 },
-    "teleportId": 8012,
-    "items": [
-      { "itemName": "Death Rune", "itemId": 560, "shopPrice": 180, "quantity": 250 },
-      { "itemName": "Soul Rune", "itemId": 566, "shopPrice": 300, "quantity": 250 },
-      { "itemName": "Blood Rune", "itemId": 565, "shopPrice": 400, "quantity": 250 },
-      { "itemName": "Nature Rune", "itemId": 561, "shopPrice": 180, "quantity": 250 },
-      { "itemName": "Law Rune", "itemId": 563, "shopPrice": 240, "quantity": 250 }
-    ],
-    "teleportLocation": { "x": 2549, "y": 3114, "plane": 0 }
-  },
-  {
-    "name": "Prifddinas (Iorwerth)",
-    "location": { "x": 3220, "y": 6120, "plane": 0 },
-    "nearestBank": { "x": 3245, "y": 6110, "plane": 0 },
-    "teleportId": 11738,
-    "items": [
-      { "itemName": "Death Rune", "itemId": 560, "shopPrice": 180, "quantity": 500 },
-      { "itemName": "Blood Rune", "itemId": 565, "shopPrice": 400, "quantity": 500 },
-      { "itemName": "Soul Rune", "itemId": 566, "shopPrice": 300, "quantity": 500 },
-      { "itemName": "Cosmic Rune", "itemId": 564, "shopPrice": 50, "quantity": 250 }
-    ],
-    "teleportLocation": { "x": 3260, "y": 6080, "plane": 0 }
-  },
-  {
-    "name": "Mage Arena (Lundail)",
-    "location": { "x": 3105, "y": 3958, "plane": 0 },
-    "nearestBank": { "x": 3093, "y": 3493, "plane": 0 },
-    "teleportId": 946,
-    "items": [
-      { "itemName": "Law Rune", "itemId": 563, "shopPrice": 240, "quantity": 250 },
-      { "itemName": "Cosmic Rune", "itemId": 564, "shopPrice": 50, "quantity": 250 },
-      { "itemName": "Nature Rune", "itemId": 561, "shopPrice": 180, "quantity": 250 },
-      { "itemName": "Death Rune", "itemId": 560, "shopPrice": 180, "quantity": 500 },
-      { "itemName": "Blood Rune", "itemId": 565, "shopPrice": 400, "quantity": 500 }
-    ],
-    "teleportLocation": { "x": 3090, "y": 3956, "plane": 0 }
-  },
-  {
-    "name": "Betty's Magic Emporium",
-    "location": { "x": 3014, "y": 3258, "plane": 0 },
-    "nearestBank": { "x": 3048, "y": 3236, "plane": 0 },
-    "teleportId": 11978,
-    "items": [
-      { "itemName": "Death Rune", "itemId": 560, "shopPrice": 180, "quantity": 250 },
-      { "itemName": "Chaos Rune", "itemId": 562, "shopPrice": 90, "quantity": 250 },
-      { "itemName": "Eye of Newt", "itemId": 221, "shopPrice": 3, "quantity": 1000 }
-    ],
-    "teleportLocation": { "x": 3105, "y": 3251, "plane": 0 }
-  },
-  {
-    "name": "Baba Yaga's Magic Shop",
-    "location": { "x": 2450, "y": 4645, "plane": 0 },
-    "nearestBank": { "x": 2477, "y": 4649, "plane": 0 },
-    "teleportId": 9075,
-    "items": [
-      { "itemName": "Astral Rune", "itemId": 9075, "shopPrice": 50, "quantity": 250 },
-      { "itemName": "Soul Rune", "itemId": 566, "shopPrice": 300, "quantity": 250 },
-      { "itemName": "Blood Rune", "itemId": 565, "shopPrice": 400, "quantity": 250 },
-      { "itemName": "Battlestaff", "itemId": 1391, "shopPrice": 7000, "quantity": 5 }
-    ],
-    "teleportLocation": { "x": 2114, "y": 3915, "plane": 0 }
-  },
-  {
-    "name": "Blast Furnace Ore Seller",
-    "location": { "x": 2931, "y": 10196, "plane": 0 },
-    "nearestBank": { "x": 2946, "y": 10196, "plane": 0 },
-    "teleportId": 995,
-    "items": [
-      { "itemName": "Coal", "itemId": 453, "shopPrice": 45, "quantity": 100 },
-      { "itemName": "Iron Ore", "itemId": 440, "shopPrice": 17, "quantity": 100 },
-      { "itemName": "Mithril Ore", "itemId": 447, "shopPrice": 166, "quantity": 100 },
-      { "itemName": "Gold Ore", "itemId": 444, "shopPrice": 150, "quantity": 100 }
-    ],
-    "teleportLocation": { "x": 2933, "y": 10196, "plane": 0 }
-  },
-  {
-    "name": "Prifddinas (Trahaearn)",
-    "location": { "x": 3245, "y": 6110, "plane": 0 },
-    "nearestBank": { "x": 3245, "y": 6110, "plane": 0 },
-    "teleportId": 11738,
-    "items": [
-      { "itemName": "Adamantite Ore", "itemId": 449, "shopPrice": 320, "quantity": 10 },
-      { "itemName": "Coal", "itemId": 453, "shopPrice": 45, "quantity": 100 }
-    ],
-    "teleportLocation": { "x": 3260, "y": 6080, "plane": 0 }
+    "isMembers": true,
+    "notes": "Spirit tree or Grand Tree teleport seed"
   },
   {
     "name": "Culinaromancer's Chest",
+    "category": "FOOD_SHOP",
     "location": { "x": 3219, "y": 9623, "plane": 0 },
     "nearestBank": { "x": 3218, "y": 9623, "plane": 0 },
-    "teleportId": 8008,
+    "teleportId": 0,
+    "teleportLocation": { "x": 3221, "y": 9623, "plane": 0 },
     "items": [
       { "itemName": "Grapes", "itemId": 1987, "shopPrice": 1, "quantity": 10 },
-      { "itemName": "Chocolate Bar", "itemId": 1973, "shopPrice": 10, "quantity": 10 },
-      { "itemName": "Cooking Apple", "itemId": 1957, "shopPrice": 1, "quantity": 10 }
+      { "itemName": "Chocolate bar", "itemId": 1973, "shopPrice": 10, "quantity": 10 },
+      { "itemName": "Cooking apple", "itemId": 1955, "shopPrice": 1, "quantity": 10 },
+      { "itemName": "Pot of cream", "itemId": 2130, "shopPrice": 9, "quantity": 10 },
+      { "itemName": "Pat of butter", "itemId": 6697, "shopPrice": 0, "quantity": 10 },
+      { "itemName": "Cheese", "itemId": 1985, "shopPrice": 4, "quantity": 10 },
+      { "itemName": "Tomato", "itemId": 1982, "shopPrice": 4, "quantity": 10 }
     ],
-    "teleportLocation": { "x": 3222, "y": 3218, "plane": 0 }
+    "isMembers": true,
+    "requirements": "Recipe for Disaster (partial)",
+    "notes": "Bank is directly adjacent - excellent for cooking supplies"
   },
   {
-    "name": "Warrior Guild Food",
-    "location": { "x": 2843, "y": 3543, "plane": 0 },
+    "name": "Pirate Jackie the Fruit",
+    "category": "FOOD_SHOP",
+    "location": { "x": 2794, "y": 3121, "plane": 0 },
+    "nearestBank": { "x": 2807, "y": 3193, "plane": 0 },
+    "teleportId": 0,
+    "teleportLocation": { "x": 2758, "y": 3242, "plane": 0 },
+    "items": [
+      { "itemName": "Pineapple", "itemId": 2114, "shopPrice": 2, "quantity": 30 },
+      { "itemName": "Papaya fruit", "itemId": 5972, "shopPrice": 10, "quantity": 10 },
+      { "itemName": "Coconut", "itemId": 5974, "shopPrice": 10, "quantity": 10 }
+    ],
+    "isMembers": true,
+    "notes": "Brimhaven - Papaya very profitable for summoning"
+  },
+  {
+    "name": "Fortunato's Fine Wine",
+    "category": "FOOD_SHOP",
+    "location": { "x": 3084, "y": 3251, "plane": 0 },
+    "nearestBank": { "x": 3092, "y": 3244, "plane": 0 },
+    "teleportId": 1712,
+    "teleportLocation": { "x": 3105, "y": 3251, "plane": 0 },
+    "items": [
+      { "itemName": "Jug of wine", "itemId": 1993, "shopPrice": 1, "quantity": 30 },
+      { "itemName": "Grapes", "itemId": 1987, "shopPrice": 1, "quantity": 30 },
+      { "itemName": "Jug", "itemId": 1935, "shopPrice": 1, "quantity": 30 }
+    ],
+    "isMembers": false,
+    "notes": "Draynor - Glory teleport, very close to bank"
+  },
+  {
+    "name": "Warrior Guild Food Shop",
+    "category": "FOOD_SHOP",
+    "location": { "x": 2846, "y": 3541, "plane": 0 },
     "nearestBank": { "x": 2843, "y": 3541, "plane": 0 },
     "teleportId": 3853,
+    "teleportLocation": { "x": 2882, "y": 3548, "plane": 0 },
     "items": [
-      { "itemName": "Potato with Cheese", "itemId": 6705, "shopPrice": 16, "quantity": 10 },
-      { "itemName": "Plain Pizza", "itemId": 2289, "shopPrice": 44, "quantity": 10 },
+      { "itemName": "Potato with cheese", "itemId": 6705, "shopPrice": 16, "quantity": 10 },
+      { "itemName": "Plain pizza", "itemId": 2289, "shopPrice": 200, "quantity": 10 },
       { "itemName": "Stew", "itemId": 2003, "shopPrice": 20, "quantity": 10 }
     ],
-    "teleportLocation": { "x": 2899, "y": 3556, "plane": 0 }
+    "isMembers": true,
+    "requirements": "130 combined Attack + Strength",
+    "notes": "Games necklace to Burthorpe"
   },
   {
-    "name": "Trader Crewmember (Catherby)",
-    "location": { "x": 2802, "y": 3432, "plane": 0 },
-    "nearestBank": { "x": 2809, "y": 3441, "plane": 0 },
-    "teleportId": 8010,
+    "name": "Jatix's Herblore Shop",
+    "category": "HERBLORE_SHOP",
+    "location": { "x": 2900, "y": 3428, "plane": 0 },
+    "nearestBank": { "x": 2875, "y": 3419, "plane": 0 },
+    "teleportId": 3853,
+    "teleportLocation": { "x": 2882, "y": 3448, "plane": 0 },
     "items": [
-      { "itemName": "Bucket of Sand", "itemId": 1783, "shopPrice": 2, "quantity": 100 },
-      { "itemName": "Soda Ash", "itemId": 1781, "shopPrice": 2, "quantity": 100 },
-      { "itemName": "Seaweed", "itemId": 401, "shopPrice": 2, "quantity": 100 },
-      { "itemName": "Pineapple", "itemId": 2114, "shopPrice": 2, "quantity": 30 }
+      { "itemName": "Eye of newt", "itemId": 221, "shopPrice": 3, "quantity": 50 },
+      { "itemName": "Vial of water", "itemId": 227, "shopPrice": 2, "quantity": 50 },
+      { "itemName": "Vial", "itemId": 229, "shopPrice": 2, "quantity": 50 },
+      { "itemName": "Pestle and mortar", "itemId": 233, "shopPrice": 4, "quantity": 10 }
     ],
-    "teleportLocation": { "x": 2757, "y": 3477, "plane": 0 }
+    "isMembers": true,
+    "notes": "Taverley - Games necklace Burthorpe"
+  },
+
+  {
+    "name": "Blast Furnace Ore Seller",
+    "category": "ORE_SHOP",
+    "location": { "x": 2841, "y": 10129, "plane": 0 },
+    "nearestBank": { "x": 2837, "y": 10207, "plane": 0 },
+    "teleportId": 0,
+    "teleportLocation": { "x": 2931, "y": 10196, "plane": 0 },
+    "items": [
+      { "itemName": "Coal", "itemId": 453, "shopPrice": 67, "quantity": 100 },
+      { "itemName": "Iron ore", "itemId": 440, "shopPrice": 25, "quantity": 100 },
+      { "itemName": "Mithril ore", "itemId": 447, "shopPrice": 243, "quantity": 50 },
+      { "itemName": "Adamantite ore", "itemId": 449, "shopPrice": 800, "quantity": 30 },
+      { "itemName": "Gold ore", "itemId": 444, "shopPrice": 225, "quantity": 100 },
+      { "itemName": "Silver ore", "itemId": 442, "shopPrice": 112, "quantity": 100 }
+    ],
+    "isMembers": true,
+    "notes": "Use minigame teleport or Keldagrim teleport"
   },
   {
-    "name": "Rogue's Den",
+    "name": "Drogo's Mining Emporium",
+    "category": "ORE_SHOP",
+    "location": { "x": 2997, "y": 3458, "plane": 0 },
+    "nearestBank": { "x": 2945, "y": 3368, "plane": 0 },
+    "teleportId": 8009,
+    "teleportLocation": { "x": 2966, "y": 3379, "plane": 0 },
+    "items": [
+      { "itemName": "Bronze pickaxe", "itemId": 1265, "shopPrice": 1, "quantity": 5 },
+      { "itemName": "Iron pickaxe", "itemId": 1267, "shopPrice": 140, "quantity": 5 },
+      { "itemName": "Steel pickaxe", "itemId": 1269, "shopPrice": 500, "quantity": 5 }
+    ],
+    "isMembers": false,
+    "notes": "Dwarven Mine entrance - Falador teleport"
+  },
+  {
+    "name": "TzHaar-Hur-Lek's Ore/Gem Store",
+    "category": "ORE_SHOP",
+    "location": { "x": 2453, "y": 5149, "plane": 0 },
+    "nearestBank": { "x": 2446, "y": 5178, "plane": 0 },
+    "teleportId": 0,
+    "teleportLocation": { "x": 2480, "y": 5175, "plane": 0 },
+    "items": [
+      { "itemName": "Uncut onyx", "itemId": 6571, "shopPrice": 300000, "quantity": 1 },
+      { "itemName": "Obsidian cape", "itemId": 6568, "shopPrice": 90000, "quantity": 5 },
+      { "itemName": "Toktz-xil-ul", "itemId": 6522, "shopPrice": 37500, "quantity": 100 }
+    ],
+    "isMembers": true,
+    "notes": "TzHaar City - Uses Tokkul currency. Fairy ring BLP"
+  },
+  {
+    "name": "Gem Trader (Ardougne)",
+    "category": "ORE_SHOP",
+    "location": { "x": 2667, "y": 3303, "plane": 0 },
+    "nearestBank": { "x": 2656, "y": 3283, "plane": 0 },
+    "teleportId": 8011,
+    "teleportLocation": { "x": 2662, "y": 3305, "plane": 0 },
+    "items": [
+      { "itemName": "Uncut sapphire", "itemId": 1623, "shopPrice": 25, "quantity": 1 },
+      { "itemName": "Uncut emerald", "itemId": 1621, "shopPrice": 50, "quantity": 1 },
+      { "itemName": "Uncut ruby", "itemId": 1619, "shopPrice": 100, "quantity": 1 },
+      { "itemName": "Uncut diamond", "itemId": 1617, "shopPrice": 200, "quantity": 1 },
+      { "itemName": "Sapphire", "itemId": 1607, "shopPrice": 37, "quantity": 1 },
+      { "itemName": "Emerald", "itemId": 1605, "shopPrice": 75, "quantity": 1 },
+      { "itemName": "Ruby", "itemId": 1603, "shopPrice": 150, "quantity": 1 },
+      { "itemName": "Diamond", "itemId": 1601, "shopPrice": 300, "quantity": 1 }
+    ],
+    "isMembers": true,
+    "notes": "East Ardougne - Ardougne teleport"
+  },
+  {
+    "name": "Shilo Village Gems",
+    "category": "ORE_SHOP",
+    "location": { "x": 2872, "y": 2973, "plane": 0 },
+    "nearestBank": { "x": 2852, "y": 2954, "plane": 0 },
+    "teleportId": 0,
+    "teleportLocation": { "x": 2828, "y": 2996, "plane": 0 },
+    "items": [
+      { "itemName": "Uncut sapphire", "itemId": 1623, "shopPrice": 25, "quantity": 1 },
+      { "itemName": "Uncut emerald", "itemId": 1621, "shopPrice": 50, "quantity": 1 },
+      { "itemName": "Uncut ruby", "itemId": 1619, "shopPrice": 100, "quantity": 1 },
+      { "itemName": "Uncut diamond", "itemId": 1617, "shopPrice": 200, "quantity": 1 },
+      { "itemName": "Uncut dragonstone", "itemId": 1631, "shopPrice": 10000, "quantity": 0 },
+      { "itemName": "Uncut onyx", "itemId": 6571, "shopPrice": 1000000, "quantity": 0 }
+    ],
+    "isMembers": true,
+    "requirements": "Shilo Village",
+    "notes": "Fairy ring CKR or Karamja gloves 3+ teleport"
+  },
+  {
+    "name": "Prifddinas Mining Shop (Trahaearn)",
+    "category": "ORE_SHOP",
+    "location": { "x": 3296, "y": 6089, "plane": 0 },
+    "nearestBank": { "x": 3310, "y": 6062, "plane": 0 },
+    "teleportId": 0,
+    "teleportLocation": { "x": 3263, "y": 6079, "plane": 0 },
+    "items": [
+      { "itemName": "Coal", "itemId": 453, "shopPrice": 67, "quantity": 100 },
+      { "itemName": "Iron ore", "itemId": 440, "shopPrice": 25, "quantity": 100 },
+      { "itemName": "Mithril ore", "itemId": 447, "shopPrice": 243, "quantity": 50 },
+      { "itemName": "Adamantite ore", "itemId": 449, "shopPrice": 800, "quantity": 50 },
+      { "itemName": "Runite ore", "itemId": 451, "shopPrice": 4500, "quantity": 20 }
+    ],
+    "isMembers": true,
+    "requirements": "Song of the Elves",
+    "notes": "Best ore stock - requires SotE"
+  },
+
+  {
+    "name": "Sawmill Operator (Varrock)",
+    "category": "CONSTRUCTION_SHOP",
+    "location": { "x": 3302, "y": 3489, "plane": 0 },
+    "nearestBank": { "x": 3253, "y": 3420, "plane": 0 },
+    "teleportId": 8007,
+    "teleportLocation": { "x": 3213, "y": 3424, "plane": 0 },
+    "items": [
+      { "itemName": "Bolt of cloth", "itemId": 8790, "shopPrice": 650, "quantity": 30 }
+    ],
+    "isMembers": true,
+    "notes": "Varrock teleport - lumber yard is NE"
+  },
+  {
+    "name": "Stonemason (Keldagrim)",
+    "category": "CONSTRUCTION_SHOP",
+    "location": { "x": 2857, "y": 10185, "plane": 0 },
+    "nearestBank": { "x": 2837, "y": 10207, "plane": 0 },
+    "teleportId": 0,
+    "teleportLocation": { "x": 2931, "y": 10196, "plane": 0 },
+    "items": [
+      { "itemName": "Limestone brick", "itemId": 3420, "shopPrice": 21, "quantity": 100 },
+      { "itemName": "Gold leaf", "itemId": 8784, "shopPrice": 130000, "quantity": 5 },
+      { "itemName": "Marble block", "itemId": 8786, "shopPrice": 325000, "quantity": 5 },
+      { "itemName": "Magic stone", "itemId": 8788, "shopPrice": 975000, "quantity": 2 }
+    ],
+    "isMembers": true,
+    "requirements": "The Giant Dwarf",
+    "notes": "Keldagrim teleport or Blast Furnace minigame"
+  },
+  {
+    "name": "Estate Agent (Varrock)",
+    "category": "CONSTRUCTION_SHOP",
+    "location": { "x": 3240, "y": 3475, "plane": 0 },
+    "nearestBank": { "x": 3253, "y": 3420, "plane": 0 },
+    "teleportId": 8007,
+    "teleportLocation": { "x": 3213, "y": 3424, "plane": 0 },
+    "items": [
+      { "itemName": "Bolt of cloth", "itemId": 8790, "shopPrice": 650, "quantity": 30 }
+    ],
+    "isMembers": true,
+    "notes": "Varrock teleport"
+  },
+
+  {
+    "name": "Razmire's General Store",
+    "category": "GENERAL_STORE",
+    "location": { "x": 3490, "y": 3249, "plane": 0 },
+    "nearestBank": { "x": 3494, "y": 3211, "plane": 0 },
+    "teleportId": 0,
+    "teleportLocation": { "x": 3442, "y": 3234, "plane": 0 },
+    "items": [
+      { "itemName": "Serum 207 (4)", "itemId": 3408, "shopPrice": 200, "quantity": 50 },
+      { "itemName": "Swamp paste", "itemId": 1941, "shopPrice": 32, "quantity": 500 },
+      { "itemName": "Limestone brick", "itemId": 3420, "shopPrice": 21, "quantity": 10 }
+    ],
+    "isMembers": true,
+    "requirements": "In Aid of the Myreque",
+    "notes": "Mort'ton - Barrows teleport or Shades minigame"
+  },
+  {
+    "name": "Canifis General Store",
+    "category": "GENERAL_STORE",
+    "location": { "x": 3510, "y": 3493, "plane": 0 },
+    "nearestBank": { "x": 3512, "y": 3478, "plane": 0 },
+    "teleportId": 0,
+    "teleportLocation": { "x": 3496, "y": 3489, "plane": 0 },
+    "items": [
+      { "itemName": "Garlic", "itemId": 1550, "shopPrice": 3, "quantity": 20 }
+    ],
+    "isMembers": true,
+    "requirements": "Priest in Peril",
+    "notes": "Fenkenstrain's Castle teleport or Fairy ring CKS"
+  },
+  {
+    "name": "Nardah General Store",
+    "category": "GENERAL_STORE",
+    "location": { "x": 3427, "y": 2888, "plane": 0 },
+    "nearestBank": { "x": 3434, "y": 2890, "plane": 0 },
+    "teleportId": 0,
+    "teleportLocation": { "x": 3422, "y": 2916, "plane": 0 },
+    "items": [
+      { "itemName": "Waterskin(4)", "itemId": 1823, "shopPrice": 32, "quantity": 10 },
+      { "itemName": "Desert goat horn", "itemId": 9735, "shopPrice": 10, "quantity": 30 },
+      { "itemName": "Bucket of sand", "itemId": 1783, "shopPrice": 5, "quantity": 30 }
+    ],
+    "isMembers": true,
+    "notes": "Desert amulet or Nardah teleport scroll"
+  },
+  {
+    "name": "Obli's General Store (Shilo)",
+    "category": "GENERAL_STORE",
+    "location": { "x": 2855, "y": 2977, "plane": 0 },
+    "nearestBank": { "x": 2852, "y": 2954, "plane": 0 },
+    "teleportId": 0,
+    "teleportLocation": { "x": 2828, "y": 2996, "plane": 0 },
+    "items": [
+      { "itemName": "Antifire potion(4)", "itemId": 2452, "shopPrice": 150, "quantity": 10 }
+    ],
+    "isMembers": true,
+    "requirements": "Shilo Village",
+    "notes": "Fairy ring CKR or Karamja gloves teleport"
+  },
+
+  {
+    "name": "Rogue's Den General Store",
+    "category": "GENERAL_STORE",
     "location": { "x": 3043, "y": 4967, "plane": 1 },
     "nearestBank": { "x": 3041, "y": 4970, "plane": 1 },
     "teleportId": 3853,
+    "teleportLocation": { "x": 2906, "y": 3537, "plane": 0 },
     "items": [
-      { "itemName": "Lockpick", "itemId": 1523, "shopPrice": 20, "quantity": 10 }
+      { "itemName": "Lockpick", "itemId": 1523, "shopPrice": 20, "quantity": 30 },
+      { "itemName": "Stethoscope", "itemId": 5560, "shopPrice": 200, "quantity": 10 }
     ],
-    "teleportLocation": { "x": 2899, "y": 3556, "plane": 0 }
+    "isMembers": true,
+    "notes": "Games necklace to Burthorpe, enter through bar"
+  },
+  {
+    "name": "Void Knight General Store",
+    "category": "GENERAL_STORE",
+    "location": { "x": 2667, "y": 2657, "plane": 0 },
+    "nearestBank": { "x": 2672, "y": 2653, "plane": 0 },
+    "teleportId": 0,
+    "teleportLocation": { "x": 2661, "y": 2649, "plane": 0 },
+    "items": [
+      { "itemName": "Rune pouch", "itemId": 12791, "shopPrice": 0, "quantity": 0 }
+    ],
+    "isMembers": true,
+    "notes": "Pest Control minigame teleport"
+  },
+
+  {
+    "name": "Oziach's Armour",
+    "category": "EQUIPMENT_SHOP",
+    "location": { "x": 3068, "y": 3518, "plane": 0 },
+    "nearestBank": { "x": 3097, "y": 3496, "plane": 0 },
+    "teleportId": 1712,
+    "teleportLocation": { "x": 3087, "y": 3495, "plane": 0 },
+    "items": [
+      { "itemName": "Rune platebody", "itemId": 1127, "shopPrice": 84500, "quantity": 1 }
+    ],
+    "isMembers": false,
+    "requirements": "Dragon Slayer I",
+    "notes": "Edgeville - Glory teleport"
   },
   {
     "name": "Legends' Guild Shop",
-    "location": { "x": 2723, "y": 3375, "plane": 2 },
-    "nearestBank": { "x": 2655, "y": 3283, "plane": 0 },
-    "teleportId": 11105,
+    "category": "EQUIPMENT_SHOP",
+    "location": { "x": 2728, "y": 3377, "plane": 0 },
+    "nearestBank": { "x": 2731, "y": 3376, "plane": 0 },
+    "teleportId": 0,
+    "teleportLocation": { "x": 2729, "y": 3349, "plane": 0 },
     "items": [
-      { "itemName": "Attack Potion(3)", "itemId": 121, "shopPrice": 10, "quantity": 10 },
-      { "itemName": "Strength Potion(3)", "itemId": 115, "shopPrice": 10, "quantity": 10 }
+      { "itemName": "Mithril seeds", "itemId": 299, "shopPrice": 200, "quantity": 50 },
+      { "itemName": "Cape of legends", "itemId": 1052, "shopPrice": 675, "quantity": 1 }
     ],
-    "teleportLocation": { "x": 2655, "y": 3441, "plane": 0 }
+    "isMembers": true,
+    "requirements": "Legends' Quest",
+    "notes": "Fairy ring BLR or Combat bracelet"
+  },
+  {
+    "name": "Champions' Guild Shop",
+    "category": "EQUIPMENT_SHOP",
+    "location": { "x": 3190, "y": 3361, "plane": 0 },
+    "nearestBank": { "x": 3183, "y": 3436, "plane": 0 },
+    "teleportId": 21146,
+    "teleportLocation": { "x": 3200, "y": 3355, "plane": 0 },
+    "items": [
+      { "itemName": "Dragon platelegs", "itemId": 4087, "shopPrice": 280000, "quantity": 1 },
+      { "itemName": "Dragon plateskirt", "itemId": 4585, "shopPrice": 280000, "quantity": 1 },
+      { "itemName": "Blue cape", "itemId": 1021, "shopPrice": 41, "quantity": 3 },
+      { "itemName": "Black full helm", "itemId": 1165, "shopPrice": 1372, "quantity": 3 },
+      { "itemName": "Adamant platebody", "itemId": 1123, "shopPrice": 16640, "quantity": 3 }
+    ],
+    "isMembers": false,
+    "requirements": "32 Quest Points",
+    "notes": "Chronicle teleport or Varrock south"
+  },
+  {
+    "name": "Sigmund the Merchant",
+    "category": "EQUIPMENT_SHOP",
+    "location": { "x": 2642, "y": 3680, "plane": 0 },
+    "nearestBank": { "x": 2648, "y": 3663, "plane": 0 },
+    "teleportId": 0,
+    "teleportLocation": { "x": 2661, "y": 3654, "plane": 0 },
+    "items": [
+      { "itemName": "Rock climbing boots", "itemId": 3105, "shopPrice": 75000, "quantity": 10 }
+    ],
+    "isMembers": true,
+    "requirements": "The Fremennik Trials",
+    "notes": "Rellekka - Lyre teleport or Fremennik boots"
+  },
+
+  {
+    "name": "Rasolo the Wandering Merchant",
+    "category": "EQUIPMENT_SHOP",
+    "location": { "x": 2531, "y": 3420, "plane": 0 },
+    "nearestBank": { "x": 2538, "y": 3573, "plane": 0 },
+    "teleportId": 0,
+    "teleportLocation": { "x": 2500, "y": 3476, "plane": 0 },
+    "items": [
+      { "itemName": "Grimy herb", "itemId": 199, "shopPrice": 0, "quantity": 1 }
+    ],
+    "isMembers": true,
+    "notes": "Baxtorian Falls area - Fairy ring ALS"
+  },
+
+  {
+    "name": "Slayer Equipment (Turael/Spria)",
+    "category": "SLAYER_SHOP",
+    "location": { "x": 2932, "y": 3536, "plane": 0 },
+    "nearestBank": { "x": 2875, "y": 3419, "plane": 0 },
+    "teleportId": 3853,
+    "teleportLocation": { "x": 2882, "y": 3548, "plane": 0 },
+    "items": [
+      { "itemName": "Enchanted gem", "itemId": 4155, "shopPrice": 1, "quantity": 10 },
+      { "itemName": "Mirror shield", "itemId": 4156, "shopPrice": 5000, "quantity": 5 },
+      { "itemName": "Broad arrows", "itemId": 4160, "shopPrice": 60, "quantity": 3000 },
+      { "itemName": "Bag of salt", "itemId": 4161, "shopPrice": 10, "quantity": 1000 },
+      { "itemName": "Rock hammer", "itemId": 4162, "shopPrice": 500, "quantity": 10 },
+      { "itemName": "Face mask", "itemId": 4164, "shopPrice": 200, "quantity": 10 },
+      { "itemName": "Earmuffs", "itemId": 4166, "shopPrice": 200, "quantity": 10 },
+      { "itemName": "Nose peg", "itemId": 4168, "shopPrice": 200, "quantity": 10 },
+      { "itemName": "Slayer's staff", "itemId": 4170, "shopPrice": 21000, "quantity": 5 },
+      { "itemName": "Spiny helmet", "itemId": 4551, "shopPrice": 650, "quantity": 10 },
+      { "itemName": "Insulated boots", "itemId": 7159, "shopPrice": 200, "quantity": 10 }
+    ],
+    "isMembers": true,
+    "notes": "Burthorpe - Games necklace"
+  },
+  {
+    "name": "Slayer Equipment (Nieve/Steve)",
+    "category": "SLAYER_SHOP",
+    "location": { "x": 2432, "y": 3423, "plane": 0 },
+    "nearestBank": { "x": 2445, "y": 3422, "plane": 0 },
+    "teleportId": 0,
+    "teleportLocation": { "x": 2461, "y": 3382, "plane": 0 },
+    "items": [
+      { "itemName": "Enchanted gem", "itemId": 4155, "shopPrice": 1, "quantity": 10 },
+      { "itemName": "Mirror shield", "itemId": 4156, "shopPrice": 5000, "quantity": 5 },
+      { "itemName": "Broad arrows", "itemId": 4160, "shopPrice": 60, "quantity": 3000 },
+      { "itemName": "Bag of salt", "itemId": 4161, "shopPrice": 10, "quantity": 1000 },
+      { "itemName": "Rock hammer", "itemId": 4162, "shopPrice": 500, "quantity": 10 },
+      { "itemName": "Face mask", "itemId": 4164, "shopPrice": 200, "quantity": 10 },
+      { "itemName": "Earmuffs", "itemId": 4166, "shopPrice": 200, "quantity": 10 },
+      { "itemName": "Nose peg", "itemId": 4168, "shopPrice": 200, "quantity": 10 },
+      { "itemName": "Slayer's staff", "itemId": 4170, "shopPrice": 21000, "quantity": 5 },
+      { "itemName": "Spiny helmet", "itemId": 4551, "shopPrice": 650, "quantity": 10 },
+      { "itemName": "Insulated boots", "itemId": 7159, "shopPrice": 200, "quantity": 10 }
+    ],
+    "isMembers": true,
+    "notes": "Tree Gnome Stronghold - Spirit tree"
+  },
+
+  {
+    "name": "Bandit Camp General Store",
+    "category": "WILDERNESS_SHOP",
+    "location": { "x": 3027, "y": 3702, "plane": 0 },
+    "nearestBank": { "x": 0, "y": 0, "plane": 0 },
+    "teleportId": 21166,
+    "teleportLocation": { "x": 3033, "y": 3689, "plane": 0 },
+    "items": [
+      { "itemName": "Tinderbox", "itemId": 590, "shopPrice": 1, "quantity": 30 },
+      { "itemName": "Pot", "itemId": 1931, "shopPrice": 1, "quantity": 30 },
+      { "itemName": "Jug", "itemId": 1935, "shopPrice": 1, "quantity": 30 },
+      { "itemName": "Shears", "itemId": 1735, "shopPrice": 1, "quantity": 30 },
+      { "itemName": "Bucket", "itemId": 1925, "shopPrice": 2, "quantity": 30 },
+      { "itemName": "Bowl", "itemId": 1923, "shopPrice": 5, "quantity": 30 },
+      { "itemName": "Cake tin", "itemId": 1887, "shopPrice": 13, "quantity": 30 },
+      { "itemName": "Hammer", "itemId": 2347, "shopPrice": 1, "quantity": 30 },
+      { "itemName": "Chisel", "itemId": 1755, "shopPrice": 1, "quantity": 30 }
+    ],
+    "isMembers": true,
+    "isWilderness": true,
+    "notes": "Level 17 Wilderness! Burning amulet teleport"
+  },
+  {
+    "name": "Bounty Hunter Store",
+    "category": "WILDERNESS_SHOP",
+    "location": { "x": 3099, "y": 3523, "plane": 0 },
+    "nearestBank": { "x": 3097, "y": 3496, "plane": 0 },
+    "teleportId": 1712,
+    "teleportLocation": { "x": 3087, "y": 3495, "plane": 0 },
+    "items": [
+      { "itemName": "Rune pouch", "itemId": 12791, "shopPrice": 0, "quantity": 0 }
+    ],
+    "isMembers": true,
+    "notes": "Edgeville - Uses Bounty Hunter points"
+  },
+
+  {
+    "name": "Ava (Draynor Manor)",
+    "category": "SPECIAL_SHOP",
+    "location": { "x": 3092, "y": 3360, "plane": 0 },
+    "nearestBank": { "x": 3092, "y": 3244, "plane": 0 },
+    "teleportId": 1712,
+    "teleportLocation": { "x": 3105, "y": 3251, "plane": 0 },
+    "items": [
+      { "itemName": "Ava's attractor", "itemId": 10498, "shopPrice": 999, "quantity": 1 },
+      { "itemName": "Ava's accumulator", "itemId": 10499, "shopPrice": 999, "quantity": 1 }
+    ],
+    "isMembers": true,
+    "requirements": "Animal Magnetism",
+    "notes": "Draynor Manor - Glory teleport to Draynor"
+  },
+  {
+    "name": "Void Knight Archery Store",
+    "category": "SPECIAL_SHOP",
+    "location": { "x": 2667, "y": 2653, "plane": 0 },
+    "nearestBank": { "x": 2672, "y": 2653, "plane": 0 },
+    "teleportId": 0,
+    "teleportLocation": { "x": 2661, "y": 2649, "plane": 0 },
+    "items": [
+      { "itemName": "Bronze arrow", "itemId": 882, "shopPrice": 1, "quantity": 5000 },
+      { "itemName": "Iron arrow", "itemId": 884, "shopPrice": 3, "quantity": 4000 },
+      { "itemName": "Steel arrow", "itemId": 886, "shopPrice": 12, "quantity": 3500 },
+      { "itemName": "Mithril arrow", "itemId": 888, "shopPrice": 32, "quantity": 3000 },
+      { "itemName": "Adamant arrow", "itemId": 890, "shopPrice": 80, "quantity": 2500 },
+      { "itemName": "Rune arrow", "itemId": 892, "shopPrice": 320, "quantity": 2000 },
+      { "itemName": "Bronze bolts", "itemId": 877, "shopPrice": 1, "quantity": 3000 },
+      { "itemName": "Iron bolts (unf)", "itemId": 9377, "shopPrice": 5, "quantity": 2500 },
+      { "itemName": "Steel bolts (unf)", "itemId": 9378, "shopPrice": 18, "quantity": 2000 }
+    ],
+    "isMembers": true,
+    "notes": "Pest Control minigame teleport"
+  },
+  {
+    "name": "Hickton's Archery Emporium",
+    "category": "SPECIAL_SHOP",
+    "location": { "x": 2822, "y": 3443, "plane": 0 },
+    "nearestBank": { "x": 2809, "y": 3441, "plane": 0 },
+    "teleportId": 8010,
+    "teleportLocation": { "x": 2757, "y": 3477, "plane": 0 },
+    "items": [
+      { "itemName": "Bronze arrow", "itemId": 882, "shopPrice": 1, "quantity": 2000 },
+      { "itemName": "Iron arrow", "itemId": 884, "shopPrice": 3, "quantity": 1500 },
+      { "itemName": "Steel arrow", "itemId": 886, "shopPrice": 12, "quantity": 1000 },
+      { "itemName": "Mithril arrow", "itemId": 888, "shopPrice": 32, "quantity": 800 },
+      { "itemName": "Adamant arrow", "itemId": 890, "shopPrice": 80, "quantity": 600 },
+      { "itemName": "Shortbow", "itemId": 841, "shopPrice": 50, "quantity": 5 },
+      { "itemName": "Longbow", "itemId": 839, "shopPrice": 80, "quantity": 5 },
+      { "itemName": "Oak shortbow", "itemId": 843, "shopPrice": 100, "quantity": 5 },
+      { "itemName": "Oak longbow", "itemId": 845, "shopPrice": 160, "quantity": 5 },
+      { "itemName": "Willow shortbow", "itemId": 849, "shopPrice": 200, "quantity": 5 },
+      { "itemName": "Willow longbow", "itemId": 847, "shopPrice": 320, "quantity": 5 },
+      { "itemName": "Maple shortbow", "itemId": 853, "shopPrice": 400, "quantity": 5 },
+      { "itemName": "Maple longbow", "itemId": 851, "shopPrice": 640, "quantity": 5 }
+    ],
+    "isMembers": true,
+    "notes": "Catherby - Camelot teleport"
+  },
+  {
+    "name": "Aaron's Archery Appendages",
+    "category": "SPECIAL_SHOP",
+    "location": { "x": 2966, "y": 3381, "plane": 0 },
+    "nearestBank": { "x": 2945, "y": 3368, "plane": 0 },
+    "teleportId": 8009,
+    "teleportLocation": { "x": 2966, "y": 3379, "plane": 0 },
+    "items": [
+      { "itemName": "Bronze arrow", "itemId": 882, "shopPrice": 1, "quantity": 2000 },
+      { "itemName": "Iron arrow", "itemId": 884, "shopPrice": 3, "quantity": 1500 },
+      { "itemName": "Steel arrow", "itemId": 886, "shopPrice": 12, "quantity": 1000 },
+      { "itemName": "Mithril arrow", "itemId": 888, "shopPrice": 32, "quantity": 800 },
+      { "itemName": "Bronze bolts", "itemId": 877, "shopPrice": 1, "quantity": 1000 }
+    ],
+    "isMembers": false,
+    "notes": "Falador - Falador teleport"
+  },
+  {
+    "name": "Brian's Archery Supplies",
+    "category": "SPECIAL_SHOP",
+    "location": { "x": 2531, "y": 3165, "plane": 0 },
+    "nearestBank": { "x": 2612, "y": 3093, "plane": 0 },
+    "teleportId": 0,
+    "teleportLocation": { "x": 2549, "y": 3114, "plane": 0 },
+    "items": [
+      { "itemName": "Bronze arrow", "itemId": 882, "shopPrice": 1, "quantity": 2000 },
+      { "itemName": "Iron arrow", "itemId": 884, "shopPrice": 3, "quantity": 1500 },
+      { "itemName": "Steel arrow", "itemId": 886, "shopPrice": 12, "quantity": 1000 }
+    ],
+    "isMembers": true,
+    "notes": "Rimmington - Watchtower teleport nearby"
+  },
+
+  {
+    "name": "Frincos's Fabulous Herb Store",
+    "category": "HERBLORE_SHOP",
+    "location": { "x": 2814, "y": 3351, "plane": 0 },
+    "nearestBank": { "x": 0, "y": 0, "plane": 0 },
+    "teleportId": 0,
+    "teleportLocation": { "x": 2834, "y": 3331, "plane": 0 },
+    "items": [
+      { "itemName": "Eye of newt", "itemId": 221, "shopPrice": 3, "quantity": 50 },
+      { "itemName": "Vial of water", "itemId": 227, "shopPrice": 2, "quantity": 50 }
+    ],
+    "isMembers": false,
+    "notes": "Entrana - No weapons/armor allowed. Balloon transport."
+  },
+
+  {
+    "name": "Martin Thwait - Rogues' Den",
+    "category": "FOOD_SHOP",
+    "location": { "x": 3043, "y": 4974, "plane": 1 },
+    "nearestBank": { "x": 3041, "y": 4970, "plane": 1 },
+    "teleportId": 3853,
+    "teleportLocation": { "x": 2906, "y": 3537, "plane": 0 },
+    "items": [
+      { "itemName": "Flash powder", "itemId": 5558, "shopPrice": 50, "quantity": 50 }
+    ],
+    "isMembers": true,
+    "notes": "Games necklace to Burthorpe - enter through pub"
+  },
+
+  {
+    "name": "Ape Atoll General Store",
+    "category": "GENERAL_STORE",
+    "location": { "x": 2765, "y": 2773, "plane": 0 },
+    "nearestBank": { "x": 2769, "y": 2792, "plane": 0 },
+    "teleportId": 0,
+    "teleportLocation": { "x": 2802, "y": 2707, "plane": 0 },
+    "items": [
+      { "itemName": "Dragon scimitar", "itemId": 4587, "shopPrice": 100000, "quantity": 1 }
+    ],
+    "isMembers": true,
+    "requirements": "Monkey Madness I",
+    "notes": "Ape Atoll teleport or Gnome glider + boat"
+  },
+
+  {
+    "name": "Lundail's Arena-side Rune Shop",
+    "category": "RUNE_SHOP",
+    "location": { "x": 3090, "y": 3956, "plane": 0 },
+    "nearestBank": { "x": 3093, "y": 3493, "plane": 0 },
+    "teleportId": 0,
+    "teleportLocation": { "x": 3090, "y": 3956, "plane": 0 },
+    "items": [
+      { "itemName": "Chaos rune", "itemId": 562, "shopPrice": 90, "quantity": 250 },
+      { "itemName": "Death rune", "itemId": 560, "shopPrice": 180, "quantity": 250 },
+      { "itemName": "Blood rune", "itemId": 565, "shopPrice": 400, "quantity": 250 },
+      { "itemName": "Nature rune", "itemId": 561, "shopPrice": 180, "quantity": 250 },
+      { "itemName": "Law rune", "itemId": 563, "shopPrice": 240, "quantity": 250 },
+      { "itemName": "Cosmic rune", "itemId": 564, "shopPrice": 50, "quantity": 250 }
+    ],
+    "isMembers": true,
+    "isWilderness": true,
+    "notes": "Wilderness! Use Ghorrock portal or lever from Ardougne/Edgeville"
+  },
+
+  {
+    "name": "Dommik's Crafting Store",
+    "category": "CRAFTING_SHOP",
+    "location": { "x": 3221, "y": 3316, "plane": 0 },
+    "nearestBank": { "x": 3269, "y": 3167, "plane": 0 },
+    "teleportId": 1712,
+    "teleportLocation": { "x": 3293, "y": 3163, "plane": 0 },
+    "items": [
+      { "itemName": "Chisel", "itemId": 1755, "shopPrice": 1, "quantity": 30 },
+      { "itemName": "Ring mould", "itemId": 1592, "shopPrice": 5, "quantity": 10 },
+      { "itemName": "Necklace mould", "itemId": 1597, "shopPrice": 5, "quantity": 10 },
+      { "itemName": "Amulet mould", "itemId": 1595, "shopPrice": 5, "quantity": 10 },
+      { "itemName": "Needle", "itemId": 1733, "shopPrice": 1, "quantity": 30 },
+      { "itemName": "Thread", "itemId": 1734, "shopPrice": 1, "quantity": 100 },
+      { "itemName": "Holy mould", "itemId": 1599, "shopPrice": 5, "quantity": 10 },
+      { "itemName": "Sickle mould", "itemId": 2976, "shopPrice": 10, "quantity": 10 },
+      { "itemName": "Tiara mould", "itemId": 5523, "shopPrice": 100, "quantity": 5 }
+    ],
+    "isMembers": false,
+    "notes": "Al Kharid - Amulet of glory teleport"
+  },
+
+  {
+    "name": "Trader Crewmember (South)",
+    "category": "CHARTER_SHIP",
+    "location": { "x": 3043, "y": 3189, "plane": 0 },
+    "nearestBank": { "x": 3047, "y": 3236, "plane": 0 },
+    "teleportId": 0,
+    "teleportLocation": { "x": 3051, "y": 3256, "plane": 0 },
+    "items": [
+      { "itemName": "Bucket of sand", "itemId": 1783, "shopPrice": 25, "quantity": 10 },
+      { "itemName": "Soda ash", "itemId": 1781, "shopPrice": 25, "quantity": 10 },
+      { "itemName": "Seaweed", "itemId": 401, "shopPrice": 5, "quantity": 10 },
+      { "itemName": "Pineapple", "itemId": 2114, "shopPrice": 5, "quantity": 10 },
+      { "itemName": "Vial of water", "itemId": 227, "shopPrice": 10, "quantity": 50 }
+    ],
+    "isMembers": true,
+    "notes": "Port Sarim south dock"
+  },
+
+  {
+    "name": "Aemad's Adventuring Supplies",
+    "category": "GENERAL_STORE",
+    "location": { "x": 2652, "y": 3299, "plane": 0 },
+    "nearestBank": { "x": 2656, "y": 3283, "plane": 0 },
+    "teleportId": 8011,
+    "teleportLocation": { "x": 2662, "y": 3305, "plane": 0 },
+    "items": [
+      { "itemName": "Vial of water", "itemId": 227, "shopPrice": 2, "quantity": 50 },
+      { "itemName": "Vial", "itemId": 229, "shopPrice": 2, "quantity": 50 }
+    ],
+    "isMembers": true,
+    "notes": "East Ardougne - Ardougne teleport"
+  },
+
+  {
+    "name": "Burthorpe Supplies",
+    "category": "GENERAL_STORE",
+    "location": { "x": 2906, "y": 3545, "plane": 0 },
+    "nearestBank": { "x": 2889, "y": 3535, "plane": 0 },
+    "teleportId": 3853,
+    "teleportLocation": { "x": 2899, "y": 3553, "plane": 0 },
+    "items": [
+      { "itemName": "Bucket", "itemId": 1925, "shopPrice": 2, "quantity": 30 },
+      { "itemName": "Bowl", "itemId": 1923, "shopPrice": 5, "quantity": 30 },
+      { "itemName": "Pot", "itemId": 1931, "shopPrice": 1, "quantity": 30 },
+      { "itemName": "Jug", "itemId": 1935, "shopPrice": 1, "quantity": 30 },
+      { "itemName": "Tinderbox", "itemId": 590, "shopPrice": 1, "quantity": 30 },
+      { "itemName": "Chisel", "itemId": 1755, "shopPrice": 1, "quantity": 30 },
+      { "itemName": "Hammer", "itemId": 2347, "shopPrice": 1, "quantity": 30 }
+    ],
+    "isMembers": false,
+    "notes": "Games necklace to Burthorpe"
   }
 ]

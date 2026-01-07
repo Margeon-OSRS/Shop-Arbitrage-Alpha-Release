@@ -1885,7 +1885,7 @@ public class FlippingPanelV2 extends PluginPanel
     {
         JFrame historyFrame = new JFrame("Trade History");
         historyFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        HistoryPanel historyPanel = new HistoryPanel(itemManager, sessionManager);
+        HistoryPanel historyPanel = new HistoryPanel(itemManager, clientThread, sessionManager);
         historyFrame.add(historyPanel);
         historyFrame.setSize(400, 600);
         historyFrame.setLocationRelativeTo(this);

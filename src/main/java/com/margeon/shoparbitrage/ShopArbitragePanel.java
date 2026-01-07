@@ -13,10 +13,9 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.*;
 import java.util.List;
-import java.util.Map;
+import java.util.stream.Collectors;
 
 public class ShopArbitragePanel extends PluginPanel
 {
@@ -40,7 +39,14 @@ public class ShopArbitragePanel extends PluginPanel
             "Distance (Far → Near)",
             "Name (A → Z)"
     });
+    
+    // Category filter
+    private final JComboBox<String> categoryDropdown = new JComboBox<>();
+    
+    // Checkboxes
     private final JCheckBox stackableOnlyCheckbox = new JCheckBox("Stackable Only");
+    private final JCheckBox hideWildernessCheckbox = new JCheckBox("Hide Wilderness");
+    private final JCheckBox membersOnlyCheckbox = new JCheckBox("Members Only");
 
     // Route planning
     private final List<ShopCardPanel> shopCards = new ArrayList<>();
@@ -49,6 +55,7 @@ public class ShopArbitragePanel extends PluginPanel
     // Cached results for re-filtering without API calls
     private List<ShopResult> cachedResults = new ArrayList<>();
     private Map<Integer, Integer> cachedItemPrices = new HashMap<>();
+    private Set<String> availableCategories = new TreeSet<>();
 
     // UI Assets
     private static final ImageIcon REFRESH_ICON;
@@ -83,7 +90,7 @@ public class ShopArbitragePanel extends PluginPanel
 
         JScrollPane scrollPane = new JScrollPane(listContainer);
         scrollPane.setBackground(ColorScheme.DARK_GRAY_COLOR);
-        scrollPane.getVerticalScrollBar().setPreferredSize(new java.awt.Dimension(12, 0));
+        scrollPane.getVerticalScrollBar().setPreferredSize(new Dimension(12, 0));
         scrollPane.getVerticalScrollBar().setBorder(new EmptyBorder(0, 5, 0, 0));
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
@@ -114,7 +121,7 @@ public class ShopArbitragePanel extends PluginPanel
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 5, 0));
         buttonPanel.setBackground(ColorScheme.DARK_GRAY_COLOR);
 
-        // About button (question mark icon)
+        // About button
         JButton aboutBtn = new JButton("?");
         aboutBtn.setFont(FontManager.getRunescapeBoldFont());
         aboutBtn.setFocusPainted(false);
@@ -153,13 +160,28 @@ public class ShopArbitragePanel extends PluginPanel
         titleRow.add(title, BorderLayout.CENTER);
         titleRow.add(buttonPanel, BorderLayout.EAST);
 
-        // Filter row: Sort + Stackable checkbox
-        JPanel filterRow = new JPanel(new BorderLayout(5, 0));
-        filterRow.setBackground(ColorScheme.DARK_GRAY_COLOR);
-        filterRow.setBorder(new EmptyBorder(5, 0, 5, 0));
+        // Category filter row
+        JPanel categoryRow = new JPanel(new BorderLayout(5, 0));
+        categoryRow.setBackground(ColorScheme.DARK_GRAY_COLOR);
+        categoryRow.setBorder(new EmptyBorder(5, 0, 5, 0));
 
-        JPanel sortPanel = new JPanel(new BorderLayout(5, 0));
-        sortPanel.setBackground(ColorScheme.DARK_GRAY_COLOR);
+        JLabel categoryLabel = new JLabel("Category:");
+        categoryLabel.setForeground(Color.LIGHT_GRAY);
+        categoryLabel.setFont(FontManager.getRunescapeSmallFont());
+
+        categoryDropdown.setBackground(ColorScheme.DARKER_GRAY_COLOR);
+        categoryDropdown.setForeground(Color.WHITE);
+        categoryDropdown.setFont(FontManager.getRunescapeSmallFont());
+        categoryDropdown.addItem("All Categories");
+        categoryDropdown.addActionListener(e -> applyFiltersAndSort());
+
+        categoryRow.add(categoryLabel, BorderLayout.WEST);
+        categoryRow.add(categoryDropdown, BorderLayout.CENTER);
+
+        // Sort row
+        JPanel sortRow = new JPanel(new BorderLayout(5, 0));
+        sortRow.setBackground(ColorScheme.DARK_GRAY_COLOR);
+        sortRow.setBorder(new EmptyBorder(2, 0, 5, 0));
 
         JLabel sortLabel = new JLabel("Sort:");
         sortLabel.setForeground(Color.LIGHT_GRAY);
@@ -170,16 +192,28 @@ public class ShopArbitragePanel extends PluginPanel
         sortDropdown.setFont(FontManager.getRunescapeSmallFont());
         sortDropdown.addActionListener(e -> applyFiltersAndSort());
 
-        sortPanel.add(sortLabel, BorderLayout.WEST);
-        sortPanel.add(sortDropdown, BorderLayout.CENTER);
+        sortRow.add(sortLabel, BorderLayout.WEST);
+        sortRow.add(sortDropdown, BorderLayout.CENTER);
+
+        // Checkbox row 1
+        JPanel checkboxRow1 = new JPanel(new FlowLayout(FlowLayout.LEFT, 5, 0));
+        checkboxRow1.setBackground(ColorScheme.DARK_GRAY_COLOR);
 
         stackableOnlyCheckbox.setBackground(ColorScheme.DARK_GRAY_COLOR);
         stackableOnlyCheckbox.setForeground(Color.LIGHT_GRAY);
         stackableOnlyCheckbox.setFont(FontManager.getRunescapeSmallFont());
+        stackableOnlyCheckbox.setToolTipText("Only show shops with stackable items (runes, arrows, etc.)");
         stackableOnlyCheckbox.addActionListener(e -> applyFiltersAndSort());
 
-        filterRow.add(sortPanel, BorderLayout.CENTER);
-        filterRow.add(stackableOnlyCheckbox, BorderLayout.EAST);
+        hideWildernessCheckbox.setBackground(ColorScheme.DARK_GRAY_COLOR);
+        hideWildernessCheckbox.setForeground(Color.LIGHT_GRAY);
+        hideWildernessCheckbox.setFont(FontManager.getRunescapeSmallFont());
+        hideWildernessCheckbox.setToolTipText("Hide shops located in the Wilderness");
+        hideWildernessCheckbox.setSelected(true); // Default to hiding wilderness
+        hideWildernessCheckbox.addActionListener(e -> applyFiltersAndSort());
+
+        checkboxRow1.add(stackableOnlyCheckbox);
+        checkboxRow1.add(hideWildernessCheckbox);
 
         // Route planning button row
         JPanel routeRow = new JPanel(new BorderLayout());
@@ -201,7 +235,9 @@ public class ShopArbitragePanel extends PluginPanel
         statusLabel.setBorder(new EmptyBorder(5, 0, 0, 0));
 
         headerContainer.add(titleRow);
-        headerContainer.add(filterRow);
+        headerContainer.add(categoryRow);
+        headerContainer.add(sortRow);
+        headerContainer.add(checkboxRow1);
         headerContainer.add(routeRow);
         headerContainer.add(statusLabel);
 
@@ -213,11 +249,9 @@ public class ShopArbitragePanel extends PluginPanel
         statusLabel.setText("Fetching prices...");
         log.info("Starting shop data refresh");
 
-        // 1. Fetch live prices asynchronously
         wikiPriceService.fetchLivePrices(() -> {
             log.info("Wiki prices fetched successfully, calculating profits");
 
-            // CRITICAL FIX: Must run calculations on the client thread
             clientThread.invoke(() -> {
                 try
                 {
@@ -233,11 +267,11 @@ public class ShopArbitragePanel extends PluginPanel
             });
         });
 
-        // Add a timeout check
+        // Timeout check
         new Thread(() -> {
             try
             {
-                Thread.sleep(10000); // 10 second timeout
+                Thread.sleep(10000);
                 SwingUtilities.invokeLater(() -> {
                     if (statusLabel.getText().equals("Fetching prices..."))
                     {
@@ -255,7 +289,6 @@ public class ShopArbitragePanel extends PluginPanel
 
     private void calculateAndDisplayResults()
     {
-        // 2. Load Shop Data (Background thread)
         log.info("Loading shop data from JSON");
         List<ShopData> shops = dataLoader.loadShopData();
 
@@ -273,6 +306,39 @@ public class ShopArbitragePanel extends PluginPanel
             statusLabel.setText("Calculating profits for " + shops.size() + " shops...");
         });
 
+        // Collect categories
+        availableCategories.clear();
+        for (ShopData shop : shops)
+        {
+            if (shop.getCategory() != null && !shop.getCategory().isEmpty())
+            {
+                availableCategories.add(shop.getCategory());
+            }
+        }
+
+        // Update category dropdown on EDT
+        SwingUtilities.invokeLater(() -> {
+            String currentSelection = (String) categoryDropdown.getSelectedItem();
+            categoryDropdown.removeAllItems();
+            categoryDropdown.addItem("All Categories");
+            for (String cat : availableCategories)
+            {
+                categoryDropdown.addItem(formatCategoryName(cat));
+            }
+            // Restore selection if still valid
+            if (currentSelection != null)
+            {
+                for (int i = 0; i < categoryDropdown.getItemCount(); i++)
+                {
+                    if (categoryDropdown.getItemAt(i).equals(currentSelection))
+                    {
+                        categoryDropdown.setSelectedIndex(i);
+                        break;
+                    }
+                }
+            }
+        });
+
         List<ShopResult> results = new ArrayList<>();
         int shopsProcessed = 0;
         int shopsWithProfit = 0;
@@ -281,7 +347,6 @@ public class ShopArbitragePanel extends PluginPanel
         {
             shopsProcessed++;
 
-            // IMPROVED: Null safety check
             if (shop == null || shop.getItems() == null || shop.getItems().isEmpty())
             {
                 log.debug("Skipping shop with no items: {}", shop != null ? shop.getName() : "unknown");
@@ -291,19 +356,12 @@ public class ShopArbitragePanel extends PluginPanel
             log.debug("Processing shop: {}", shop.getName());
 
             long shopTotalProfit = 0;
-            long shopTripProfit = 0; // Per inventory
-            int itemsChecked = 0;
+            long shopTripProfit = 0;
             int profitableItems = 0;
 
             for (ShopItemData item : shop.getItems())
             {
-                itemsChecked++;
-
-                // IMPROVED: Null safety
-                if (item == null)
-                {
-                    continue;
-                }
+                if (item == null) continue;
 
                 try
                 {
@@ -316,7 +374,7 @@ public class ShopArbitragePanel extends PluginPanel
                         log.debug("  {} is profitable: {} gp/hr", item.itemName, itemHourly);
                     }
 
-                    // Calculate trip profit (per inventory of 27)
+                    // Calculate trip profit
                     WikiPriceService.WikiPrice price = wikiPriceService.getPrice(item.itemId);
                     if (price != null && price.high > 0)
                     {
@@ -338,12 +396,11 @@ public class ShopArbitragePanel extends PluginPanel
                 }
             }
 
-            log.debug("Shop {} - Checked {} items, {} profitable, total profit: {} gp/hr",
-                    shop.getName(), itemsChecked, profitableItems, shopTotalProfit);
+            log.debug("Shop {} - {} profitable items, total profit: {} gp/hr",
+                    shop.getName(), profitableItems, shopTotalProfit);
 
             if (shopTotalProfit > 0)
             {
-                // Check if shop has any stackable items
                 boolean hasStackable = false;
                 if (shop.getItems() != null)
                 {
@@ -361,19 +418,13 @@ public class ShopArbitragePanel extends PluginPanel
                 results.add(new ShopResult(shop, shopTotalProfit, shopTripProfit, hasStackable));
                 log.debug("Added {} to results with {} gp/hr", shop.getName(), shopTotalProfit);
             }
-            else
-            {
-                log.debug("Skipping {} - no profitable items", shop.getName());
-            }
         }
 
         log.info("Processed {}/{} shops, found {} with profit", shopsProcessed, shops.size(), shopsWithProfit);
-        log.info("Results list size: {}", results.size());
 
-        // Cache results for filtering/sorting without re-fetching
         cachedResults = results;
 
-        // 3. Pre-fetch all item prices on client thread (CRITICAL for thread safety)
+        // Pre-fetch item prices
         Map<Integer, Integer> allItemPrices = new HashMap<>();
         for (ShopResult result : results)
         {
@@ -399,20 +450,34 @@ public class ShopArbitragePanel extends PluginPanel
         }
 
         log.info("Pre-fetched prices for {} items", allItemPrices.size());
-
-        // Cache for filtering/sorting
         cachedItemPrices = allItemPrices;
 
-        // 4. Apply filters and sort, then update UI
-        SwingUtilities.invokeLater(() -> {
-            applyFiltersAndSort();
-        });
+        SwingUtilities.invokeLater(this::applyFiltersAndSort);
     }
 
-    // IMPROVED: Extracted method for clarity
+    private String formatCategoryName(String category)
+    {
+        if (category == null) return "Unknown";
+        // Convert RUNE_SHOP to "Rune Shop", CHARTER_SHIP to "Charter Ship", etc.
+        String[] parts = category.toLowerCase().split("_");
+        StringBuilder sb = new StringBuilder();
+        for (String part : parts)
+        {
+            if (sb.length() > 0) sb.append(" ");
+            sb.append(part.substring(0, 1).toUpperCase()).append(part.substring(1));
+        }
+        return sb.toString();
+    }
+
+    private String getCategoryFromDisplayName(String displayName)
+    {
+        if (displayName == null || displayName.equals("All Categories")) return null;
+        // Convert "Rune Shop" back to "RUNE_SHOP"
+        return displayName.toUpperCase().replace(" ", "_");
+    }
+
     private long calculateItemProfit(ShopData shop, ShopItemData item)
     {
-        // Get Price
         WikiPriceService.WikiPrice price = wikiPriceService.getPrice(item.itemId);
         if (price == null)
         {
@@ -426,7 +491,7 @@ public class ShopArbitragePanel extends PluginPanel
             return 0;
         }
 
-        int gePrice = price.high; // Sell at high price
+        int gePrice = price.high;
         int margin = gePrice - item.shopPrice;
         int tax = (int) Math.min(Math.floor(gePrice * 0.01), 5000000);
         int netMargin = margin - tax;
@@ -436,7 +501,6 @@ public class ShopArbitragePanel extends PluginPanel
             return 0;
         }
 
-        // Calculate Hourly Profit using ProfitCalculator
         long hourly = ProfitCalculator.calculateHourlyProfit(
                 itemManager,
                 item.itemId,
@@ -448,9 +512,6 @@ public class ShopArbitragePanel extends PluginPanel
         return hourly;
     }
 
-    /**
-     * Apply current filter/sort settings to cached results without re-fetching data
-     */
     private void applyFiltersAndSort()
     {
         if (cachedResults.isEmpty())
@@ -461,12 +522,13 @@ public class ShopArbitragePanel extends PluginPanel
 
         log.debug("Applying filters and sort to {} cached shops", cachedResults.size());
 
-        // 1. FILTER
         List<ShopResult> filtered = new ArrayList<>();
 
         int minProfit = config.minProfitFilter();
         int maxDistance = config.maxDistanceFilter();
         boolean stackableOnly = stackableOnlyCheckbox.isSelected();
+        boolean hideWilderness = hideWildernessCheckbox.isSelected();
+        String selectedCategory = getCategoryFromDisplayName((String) categoryDropdown.getSelectedItem());
 
         for (ShopResult result : cachedResults)
         {
@@ -488,12 +550,24 @@ public class ShopArbitragePanel extends PluginPanel
                 continue;
             }
 
+            // Wilderness filter
+            if (hideWilderness && result.shop.isWilderness())
+            {
+                continue;
+            }
+
+            // Category filter
+            if (selectedCategory != null && !result.shop.matchesCategory(selectedCategory))
+            {
+                continue;
+            }
+
             filtered.add(result);
         }
 
         log.debug("Filtered down to {} shops", filtered.size());
 
-        // 2. SORT
+        // Sort
         String sortOption = (String) sortDropdown.getSelectedItem();
 
         if ("Profit (High → Low)".equals(sortOption))
@@ -517,14 +591,13 @@ public class ShopArbitragePanel extends PluginPanel
             filtered.sort((r1, r2) -> r1.shop.getName().compareTo(r2.shop.getName()));
         }
 
-        // 3. UPDATE UI
         updateShopList(filtered, cachedItemPrices);
     }
 
     private void updateShopList(List<ShopResult> results, Map<Integer, Integer> itemPrices)
     {
         listContainer.removeAll();
-        shopCards.clear(); // Clear tracked cards
+        shopCards.clear();
         statusLabel.setText("Found " + results.size() + " profitable shops");
 
         GridBagConstraints c = new GridBagConstraints();
@@ -538,7 +611,6 @@ public class ShopArbitragePanel extends PluginPanel
         {
             try
             {
-                // IMPROVED: Null safety check
                 if (result != null && result.shop != null)
                 {
                     ShopCardPanel card = new ShopCardPanel(
@@ -546,12 +618,12 @@ public class ShopArbitragePanel extends PluginPanel
                             itemManager,
                             result.totalProfit,
                             result.tripProfit,
-                            itemPrices,  // Pass pre-fetched prices
-                            config       // Pass config for color coding
+                            itemPrices,
+                            config
                     );
 
                     listContainer.add(card, c);
-                    shopCards.add(card); // Track for route planning
+                    shopCards.add(card);
                     c.gridy++;
                 }
             }
@@ -569,12 +641,8 @@ public class ShopArbitragePanel extends PluginPanel
         listContainer.repaint();
     }
 
-    /**
-     * Open route planner popup with selected shops
-     */
     private void openRoutePlanner()
     {
-        // Get all selected shops
         List<ShopData> selectedShops = new ArrayList<>();
         for (ShopCardPanel card : shopCards)
         {
@@ -597,18 +665,14 @@ public class ShopArbitragePanel extends PluginPanel
 
         log.info("Planning route for {} selected shops", selectedShops.size());
 
-        // Calculate route on client thread (needs ItemManager access)
         clientThread.invoke(() -> {
             try
             {
-                // Use Varrock bank as default start location
-                // TODO: Could get player's actual location in future
                 net.runelite.api.coords.WorldPoint startLocation =
                         new net.runelite.api.coords.WorldPoint(3253, 3420, 0);
 
                 RoutePlanner.PlannedRoute route = RoutePlanner.calculateRoute(selectedShops, startLocation);
 
-                // Display on Swing thread
                 SwingUtilities.invokeLater(() -> displayRoute(route));
             }
             catch (Exception e)
@@ -626,19 +690,12 @@ public class ShopArbitragePanel extends PluginPanel
         });
     }
 
-    /**
-     * Display the route in a popup window
-     */
     private void displayRoute(RoutePlanner.PlannedRoute route)
     {
         JFrame routeFrame = new JFrame("Optimal Shop Route");
         routeFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        // --- FIX START ---
-        // Pass 'clientThread' (which is already a field in this class) to the constructor
         RoutePanel routePanel = new RoutePanel(itemManager, clientThread);
-        // --- FIX END ---
-
         routePanel.displayRoute(route);
 
         routeFrame.add(routePanel);
@@ -647,9 +704,6 @@ public class ShopArbitragePanel extends PluginPanel
         routeFrame.setVisible(true);
     }
 
-    /**
-     * Show the About dialog
-     */
     private void showAboutDialog()
     {
         JDialog aboutDialog = new JDialog();
@@ -665,7 +719,7 @@ public class ShopArbitragePanel extends PluginPanel
         aboutDialog.setVisible(true);
     }
 
-    // Helper class to hold data during sort
+    // Helper class for results
     private static class ShopResult
     {
         ShopData shop;
