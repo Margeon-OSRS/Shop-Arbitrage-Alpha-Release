@@ -28,7 +28,7 @@ public class HistoryPanel extends PluginPanel
     private final FlippingSessionManager sessionManager;
     private final JPanel listContainer = new JPanel();
 
-    // Cache for item names (populated on client thread, read on EDT)
+    // Cache for item names to avoid repeated client thread calls
     private final Map<Integer, String> itemNameCache = new HashMap<>();
 
     public HistoryPanel(ItemManager itemManager, ClientThread clientThread, FlippingSessionManager sessionManager)
@@ -66,27 +66,22 @@ public class HistoryPanel extends PluginPanel
 
         add(scrollPane, BorderLayout.CENTER);
 
-        // Listen for updates - fetch names on client thread first
-        sessionManager.addListener(this::fetchNamesAndRebuild);
+        // Listen for updates - fetch item names on client thread first
+        sessionManager.addListener(this::onSessionUpdate);
 
-        // Initial build - fetch names on client thread first
-        fetchNamesAndRebuild();
+        // Initial build
+        onSessionUpdate();
     }
 
     /**
-     * Fetches item names on the client thread, then rebuilds the UI on the EDT
+     * Called when session data updates. Fetches item names on client thread,
+     * then rebuilds UI on EDT.
      */
-    private void fetchNamesAndRebuild()
+    private void onSessionUpdate()
     {
         List<FlippingSessionManager.FlipTransaction> history = sessionManager.getHistory();
 
-        if (history.isEmpty())
-        {
-            SwingUtilities.invokeLater(this::rebuildList);
-            return;
-        }
-
-        // Fetch all item names on the client thread
+        // Fetch any missing item names on the client thread
         clientThread.invoke(() -> {
             for (FlippingSessionManager.FlipTransaction tx : history)
             {
@@ -105,15 +100,14 @@ public class HistoryPanel extends PluginPanel
                 }
             }
 
-            // Now rebuild the UI on the EDT
-            SwingUtilities.invokeLater(this::rebuildList);
+            // Now update UI on EDT
+            SwingUtilities.invokeLater(() -> rebuildList(history));
         });
     }
 
-    private void rebuildList()
+    private void rebuildList(List<FlippingSessionManager.FlipTransaction> history)
     {
         listContainer.removeAll();
-        List<FlippingSessionManager.FlipTransaction> history = sessionManager.getHistory();
 
         if (history.isEmpty())
         {
@@ -175,7 +169,8 @@ public class HistoryPanel extends PluginPanel
         infoPanel.setBackground(ColorScheme.DARKER_GRAY_COLOR);
         infoPanel.setBorder(new EmptyBorder(0, 8, 0, 0));
 
-        String itemName = getItemName(tx.itemId);
+        // Use cached item name (already fetched on client thread)
+        String itemName = itemNameCache.getOrDefault(tx.itemId, UNKNOWN_ITEM_NAME);
 
         JLabel nameLabel = new JLabel(itemName);
         nameLabel.setForeground(Color.WHITE);
@@ -204,17 +199,5 @@ public class HistoryPanel extends PluginPanel
         row.setToolTipText("Profit: " + QuantityFormatter.formatNumber(tx.profit) + " gp");
 
         return row;
-    }
-
-    // FIXED: Use cached item names instead of calling itemManager directly
-    private String getItemName(int itemId)
-    {
-        String cachedName = itemNameCache.get(itemId);
-        if (cachedName != null)
-        {
-            return cachedName;
-        }
-        // Fallback - should not happen if fetchNamesAndRebuild was called properly
-        return UNKNOWN_ITEM_NAME;
     }
 }

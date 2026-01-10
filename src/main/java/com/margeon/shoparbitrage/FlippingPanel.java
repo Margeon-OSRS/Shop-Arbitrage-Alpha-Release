@@ -642,6 +642,7 @@ public class FlippingPanel extends PluginPanel
         JFrame historyFrame = new JFrame("Trade History");
         historyFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
+        // FIXED: Pass clientThread to HistoryPanel for thread-safe item name fetching
         HistoryPanel historyPanel = new HistoryPanel(itemManager, clientThread, sessionManager);
 
         historyFrame.add(historyPanel);

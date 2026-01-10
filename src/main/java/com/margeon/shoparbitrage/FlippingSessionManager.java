@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 @Singleton
 public class FlippingSessionManager
@@ -29,7 +30,10 @@ public class FlippingSessionManager
 
     private final Gson gson;
     private SessionData data = new SessionData();
-    private final List<Runnable> listeners = new ArrayList<>();
+
+    // FIXED: Use CopyOnWriteArrayList to prevent ConcurrentModificationException
+    // when listeners are added/removed during notification
+    private final List<Runnable> listeners = new CopyOnWriteArrayList<>();
 
     @Inject
     public FlippingSessionManager(Gson gson)
@@ -40,11 +44,28 @@ public class FlippingSessionManager
 
     public void addListener(Runnable callback)
     {
-        this.listeners.add(callback);
+        if (callback != null && !listeners.contains(callback))
+        {
+            this.listeners.add(callback);
+            log.debug("Added listener, total listeners: {}", listeners.size());
+        }
+    }
+
+    /**
+     * Remove a listener - IMPORTANT for cleanup when panels are disposed
+     */
+    public void removeListener(Runnable callback)
+    {
+        if (callback != null)
+        {
+            boolean removed = this.listeners.remove(callback);
+            log.debug("Removed listener: {}, total listeners: {}", removed, listeners.size());
+        }
     }
 
     private void notifyListeners()
     {
+        log.debug("Notifying {} listeners", listeners.size());
         for (Runnable r : listeners)
         {
             try
@@ -74,6 +95,9 @@ public class FlippingSessionManager
         int itemId = offer.getItemId();
         int price = offer.getPrice();
         int qty = offer.getTotalQuantity();
+
+        log.info("GE offer changed: {} {} x{} @ {}",
+                offer.getState(), itemId, qty, price);
 
         boolean dataChanged = false;
 
@@ -109,6 +133,7 @@ public class FlippingSessionManager
             log.debug("Trimmed old buy history for item {} to prevent memory leak", itemId);
         }
 
+        log.info("Recorded buy: {} x{} @ {} (history size: {})", itemId, quantity, price, prices.size());
         return true;
     }
 
@@ -116,7 +141,9 @@ public class FlippingSessionManager
     {
         if (!data.buyHistory.containsKey(itemId) || data.buyHistory.get(itemId).isEmpty())
         {
-            log.debug("Sell recorded for item {} but no matching buy history found", itemId);
+            log.info("Sell recorded for item {} but no matching buy history found - tracking as unmatched sale", itemId);
+            // Still notify listeners even for unmatched sales so UI can show activity
+            notifyListeners();
             return false;
         }
 
@@ -153,8 +180,10 @@ public class FlippingSessionManager
                 data.completedFlips.remove(data.completedFlips.size() - 1);
             }
 
-            notifyListeners();
             log.info("Flip completed: Item {}, Qty {}, Profit {}", itemId, matchedCount, profit);
+
+            // IMPORTANT: Notify listeners AFTER updating data
+            notifyListeners();
             return true;
         }
 
